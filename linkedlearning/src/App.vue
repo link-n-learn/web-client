@@ -1,22 +1,5 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-  <div class="container">
-    <nav class="navbar col-6 offset-10 footer py-3 mt-auto">
-            <div class="navbar-link">
-                <router-link v-if="!this.getisLoggedIn" :to="{name : 'signup'}" class="text2" >SignUp</router-link>
-                <router-link :to="{name:'dashboard'}" v-if="this.getisLoggedIn" class="text5">Dashboard</router-link>
-            </div>
-            <div class="navbar-link active">
-                <a href="/" v-if="!this.getisLoggedIn" class="text4">Home</a>
-                <span v-if="this.getisLoggedIn" class="text4">{{this.getloggedInUser.username}}</span>
-            </div>
-            <div class="navbar-link">
-                <button v-if="this.getisLoggedIn" class="button_logout" @click="logoutUser">Logout</button>
-                <router-link v-if="!this.getisLoggedIn" :to="{ name : 'login'}" class="text3" >Login</router-link> 
-            </div>
-      </nav>
-  </div>
-  
   
   <div v-show="this.getError.length > 0" class="error-msg">
     {{ this.getError }}
