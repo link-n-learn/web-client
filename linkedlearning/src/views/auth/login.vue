@@ -1,18 +1,11 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <div class="container">
-    <div class="row">
-      <div class="col"></div>
-      <div class="col">
-        <img src="./linked_learning_image.png" id="image"/>
-        <h2>Login</h2>
-      </div>
-      <div class="col"></div>
-    </div>
-  </div>
-
-  <div class="container">
-    <form @submit.prevent="login">
+      <img src="../../assets/linked_learning_image.png" id="image"/>
+      
+    <div class="form-border">
+      <h2 >Login</h2>
+      <form @submit.prevent="login">
       <div class="form-floating">
         <div class="col-6 offset-3">
           <p class="text-center">Email</p>
@@ -34,17 +27,21 @@
             required
           />
 
-          <a>Forgot Password?</a>
+          <router-link to="/" style="text-align: left;">Forgot Password?</router-link>
         </div>
         <div class="col-6 offset-3 justify-content-center">
           <button id="login_button"><h6>Login</h6></button>
         </div>
         <div class="col-6 offset-3">
-          <a href="/signup">Don't have an account?Signup</a>
+          Don't have an account? <router-link to="/signup">Signup</router-link>
         </div>
       </div>
     </form>
+    </div>
   </div>
+
+  
+    
 </template>
 
 <script>
@@ -81,9 +78,7 @@ export default {
 </script>
 
 <style>
-#box {
-  padding: 15px;
-}
+
 #image{
   height: 25vh;
   width: 25vh;
@@ -93,6 +88,18 @@ export default {
   border:1px solid black;
   border-radius:3px;
   color:white;
+  padding : 5px 15px;
+  margin: 2vh;
+}
+.form-border{
+  margin-left: 15vw;
+  margin-right: 15vw;
+  margin-top: 2vh;
+  padding: 1vh 0;
+}
+
+.form-control{
+  padding: 0.5vh 0;
 }
 @import "~bootstrap/dist/css/bootstrap.css";
 </style>

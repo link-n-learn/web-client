@@ -19,7 +19,7 @@
     <div class="row">
       <div class="col"></div>
       <div class="col">
-        <img src="./linked_learning_image.png" id="image" />
+        <img src="../../assets/linked_learning_image.png" id="image" />
         <h2>Verify email</h2>
       </div>
       <div class="col"></div>
@@ -31,7 +31,7 @@
         <div class="col-6 offset-3">
           <p class="text-center">Enter OTP</p>
           <input id="username" class="form-control" placeholder="OTP" v-model="verifyDetails.otp" required />
-          <a @click.prevent="resendOtp" v-bind:disabled="pausedForAMinute">Resend OTP</a>
+          <button @click.prevent="resendOtp" id="resend-btn" v-bind:disabled="pausedForAMinute">Resend OTP</button>
         </div>
         <div class="col-6 offset-3 justify-content-center">
           <button id="button"><h6>Submit</h6></button>
@@ -104,6 +104,12 @@ export default {
 #image{
   height: 25vh;
   width: 25vh;
+}
+#resend-btn{
+  background-color: white;
+  color: #127ebd;
+  border: none;
+  padding: 2vh 0
 }
 @import "~bootstrap/dist/css/bootstrap.css";
 </style>
