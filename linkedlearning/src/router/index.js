@@ -3,7 +3,7 @@ import signup from '../views/auth/signup.vue'
 import login from '../views/auth/login.vue'
 import store from '../store/mainIndex'
 import verify from '../views/auth/verify.vue'
-import dashboard from '../views/auth/dashboard.vue'
+import dashboard from '../views/main_page/dashboard.vue'
 
 const routes = [
   {

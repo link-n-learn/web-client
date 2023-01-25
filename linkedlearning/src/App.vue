@@ -1,77 +1,146 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-  
   <div v-show="this.getError.length > 0" class="error-msg">
     {{ this.getError }}
   </div>
   <div v-show="this.getMsg.length > 0" class="success-msg">
-   {{ this.getMsg }}
+    {{ this.getMsg }}
   </div>
-  <nav class="container text-center"><br>
-    <router-view/>
-  </nav><br><br>
+
+  <div class="wrapper" v-if="getisLoggedIn">
+    <nav class="sidebar">
+      <div class="box">
+        <div class="log">
+          <img src="./linked_learning_image.png" height="70vw" width="70vw" class="user" />
+        </div>
+        <div class="log2">
+          <ul class="sidebar-side">
+            <li class="side-item">
+              <img src="./icons8-user-60.png" height="35vw" width="35vw" />
+              <a href="#" class="side-link"><b>Profile</b></a>
+            </li>
+            <li class="side-item">
+              <img src="./icons8-repository-50.png" height="35vw" width="35vw" />
+              <a href="#" class="side-link"><b>Courses</b></a>
+            </li>
+            <li class="side-item">
+              <img src="./icons8-gear-50.png" height="35vw" width="35vw" />
+              <a href="#" class="side-link"><b>Settings</b></a>
+            </li>
+            <li class="side-item">
+              <img src="./icons8-logout-rounded-64.png" />
+              <a @click="logoutUser" class="side-link"><b>Logout</b></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
+  <div class="container text-center">
+    <br />
+    <router-view />
+  </div>
+  <br /><br />
 </template>
 
 <script>
-
-import { mapGetters } from 'vuex';
-import router from './router';
-import refreshInstance from './Config/axios';
+import { mapGetters } from "vuex";
+import router from "./router";
+import refreshInstance from "./Config/axios";
 
 export default {
-  computed: mapGetters(["getError", "getMsg", "getisLoggedIn" , "getRefreshToken", "getloggedInUser"]),
-  beforeMount : function() {
-    this.$store.dispatch('syncAuthLocalStorage');
+  computed: mapGetters([
+    "getError",
+    "getMsg",
+    "getisLoggedIn",
+    "getRefreshToken",
+    "getloggedInUser",
+  ]),
+  beforeMount: function () {
+    this.$store.dispatch("syncAuthLocalStorage");
   },
-  methods : {
-    logoutUser : async function (){
-      try{
+  methods: {
+    logoutUser: async function () {
+      try {
         // const res = await axios.patch('auth/logout' , {})
         // console.log(res)
 
         const config = {
-          headers : {
-            authorization : `Bearer ${this.getRefreshToken}`
-          }
-        }
-        const res = await refreshInstance.patch('/auth/logout',{},config);
+          headers: {
+            authorization: `Bearer ${this.getRefreshToken}`,
+          },
+        };
+        const res = await refreshInstance.patch("/auth/logout", {}, config);
 
-        this.$store.dispatch('clearAuthState');
-        this.$store.dispatch('setMsg' , res.data.msg);
-        router.push({name : "login"});
-      }catch(err){
-        console.log(this.getisLoggedIn)
-        console.log(err)
+        this.$store.dispatch("clearAuthState");
+        this.$store.dispatch("setMsg", res.data.msg);
+        router.push({ name: "login" });
+      } catch (err) {
+        console.log(this.getisLoggedIn);
+        console.log(err);
         this.$store.dispatch("setError", err.response.data.err);
       }
-    }
-  }
-}
-
+    },
+  },
+};
 </script>
 
 <style>
-.signupLogin{
-  margin-top: -40px;
-}
-#topNavbar {
-  background-color: #071C52;
-}
-#text1{
-  color: #FFDE59;
-  font-size: 2rem;
-}
-.text2{
-  font-size: 1.3rem;
-  color: #FFDE59;
+* {
+  margin: 0rem 0rem;
+  padding: 0rem;
+  box-sizing: border-box;
+  list-style: none;
   text-decoration: none;
-  padding-right: 2rem;
 }
-.text3{
-  font-size: 1.3rem;
-  color: #FFDE59;
+.wrapper {
+  display: flex;
+  position: fixed;
+}
+.wrapper .sidebar {
+  width: 7.5vw;
+  height: 200vh;
+  background-color: #212121;
+}
+a {
+  color: white;
+  margin: 0rem 1.5rem;
+  margin-left: 0.4rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+li {
+  margin: 1rem 0rem;
+}
+ul {
+  margin-top: 10rem;
+}
+.user {
+  border-radius: 50px;
+  margin: auto;
+  border: 3px solid #aba9a9;
+}
+img {
+  margin: 1rem 1rem;
+  margin-right: 2rem;
+}
+.box {
+  text-align: center;
+  justify-content: center;
+}
+a:hover {
   text-decoration: none;
-  padding-right: 2rem;
+  color: grey;
+}
+.log {
+  margin-top: 2rem;
+  margin-bottom: 4rem;
+  text-align: center;
+  justify-content: center;
+}
+.log2 {
+  text-align: center;
+  justify-content: center;
 }
 .error-msg {
   width: 25%;
@@ -92,51 +161,6 @@ export default {
   border: none;
   border-radius: 10px;
   padding: 2vh 2vw;
-}
-.button_logout{
-  padding: 0;
-  border: none;
-  background: none;
-  color: #FFDE59;
-  font-size: 1.5rem;
-  margin-top: -50px;
-  margin-right: 50px;
-}
-*{
-    font-family: 'Montserrat', sans-serif;
-}
-.navbar{
-  /* align-self: center; */
-	width: 50%;
-	margin-left:20%;
-	padding-top: 1vh;
-	padding-bottom: 1vh;
-	padding-left: 5vh;
-	padding-right: 5vh;
-	height: auto;
-	border: 0.5px solid #00000079;
-	border-radius: 5vh;
-    background: white;
-    position: fixed;
-    bottom: 5vh;
-}
-
-.navbar-link{
-	width: fit-content;
-}
-
-.navbar img{
-	width: 24px;
-}
-.text4{
-  color : #071C52;
-  font-size: 1.5rem;
-  text-decoration: none;
-}
-.text5{
-  text-decoration: none;
-  color:#FFDE59;
-  font-size: 1.5rem;
 }
 @import "~bootstrap/dist/css/bootstrap.css";
 </style>

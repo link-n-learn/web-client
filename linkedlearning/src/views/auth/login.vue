@@ -39,7 +39,7 @@
         <div class="col-6 offset-3 justify-content-center">
           <button id="login_button"><h6>Login</h6></button>
         </div>
-        <div class="col-6 offset-3">
+        <div class="col-6 offset-3 justify-content-center">
           <a href="/signup">Don't have an account?Signup</a>
         </div>
       </div>
@@ -51,7 +51,15 @@
 import axios from "axios";
 import router from "../../router/index";
 import store from "../../store/mainIndex";
+import { mapGetters } from "vuex";
 export default {
+  computed: mapGetters([
+    "getError",
+    "getMsg",
+    "getisLoggedIn",
+    "getRefreshToken",
+    "getloggedInUser",
+  ]),
   data() {
     return {
       loginDetails: {
@@ -70,6 +78,7 @@ export default {
         const response = await axios.patch("auth/login", login_data);
         if (response.status == 200) {
           await store.dispatch("setLoggedInUser", response.data);
+          // console.log("In Login redirect");
           router.push({ name: "dashboard" });
         }
       } catch (err) {
