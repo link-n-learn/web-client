@@ -2,14 +2,17 @@
 <template>
   <div class="heading">
     <h3>Create a course</h3>
-
-    <div class="row" id="first">
-      <a href="#"><div class="column" id="d">Details</div></a>
-      <a href="#"><div class="column" id="s">Syllabus</div></a>
-      <a href="#"><div class="column" id="c">Content</div></a>
-    </div>
   </div>
 
+  <div class="row" id="first">
+   <div id="d" class="col-md-4">Details</div>
+   <div id="s" class="col-md-4">Syllabus</div>
+   <div id="c" class="col-md-4">Content</div>
+
+      <!-- <a href="#"><div id="d" class="col-md-4">Details</div></a>
+      <a href="#"><div id="s" class="col-md-4">Syllabus</div></a>
+      <a href="#"><div  id="c" class="col-md-4">Content</div></a> -->
+  </div>
   <div id="cd"><h4>Course Details</h4></div>
   <div class="row" id="second">
     <div class="column" id="inti">
@@ -71,7 +74,7 @@
       </div>
     </div>
   </div>
-  <div class="row" id="fourth">
+  <div  id="fourth">
     <label for="avatar">Thumbnail:</label>
     <input
       type="file"
@@ -82,11 +85,12 @@
     />
   </div>
 
-  <div class="row" id="fifth">
+  <div id="fifth">
     <button class="prev">Previous</button>
     <button>Save</button>
     <button>Next</button>
   </div>
+
 </template>
 
 <script>
@@ -109,16 +113,16 @@ export default {};
 }
 #first {
   text-align: center;
-  justify-content: center;
-  height: 1.5vw;
-  width: 100vw;
-  margin: 3vw 0vw;
+  height: 2vw;
+  width: 75vw;
+  margin-top: 4vh;
+  margin-left: 5vw;
+  margin-bottom: -2vh;
 }
 
 .column {
   border: 0.5px solid grey;
   text-align: center;
-  justify-content: center;
   height: 1.5vw;
   width: 25vw;
   padding-bottom: 1.5rem;
@@ -135,12 +139,14 @@ export default {};
 #s {
   border-right: 0;
   border-left: 0;
+  border-top: 1px #80808099 solid;
   box-shadow: 0px 2px #80808099;
 }
 #c {
   border-left: 0rem;
   border-top-right-radius: 1rem;
   border-bottom-right-radius: 1rem;
+  border-top: 1px #80808099 solid;
   box-shadow: 0px 2px #80808099;
 }
 #title {
@@ -156,9 +162,8 @@ export default {};
   box-shadow: 4px 6px #80808099;
 }
 #cd {
-  margin: 2vw 12vw;
+  margin: 2vw 2vw;
   border: 0;
-  margin-bottom: -1.5vw;
 }
 #sc {
   border: 0;
@@ -181,13 +186,10 @@ label {
 
 #second {
   width: 80vw;
-  justify-content: left;
-  margin: 1vw 12vw;
+  margin: 1vw 1vw;
   margin-top: 2vw;
 }
 #inti {
-  text-align: none;
-  justify-content: none;
   border: 0;
 }
 
@@ -202,10 +204,9 @@ label {
   border: 0;
 }
 #third {
-  width: 100vw;
-  justify-content: left;
-  margin: 2vw 12vw;
-  height: 22vw;
+  margin: 2vw 1vw;
+  max-width: 100%;
+  height: 17vw;
 }
 #desc {
   border: 0;
@@ -232,17 +233,17 @@ label {
 
 #fourth {
   height: 1vw;
-  justify-content: left;
-  margin: 2vw 12vw;
-  margin-top: -3vw;
+  /* justify-content: left; */
+  margin: 2vw 1vw;
+  margin-top: -2vh;
 }
 #fifth {
-  width: 100vw;
+  max-width: 100%;
   justify-content: left;
-  margin: 4vw 12vw;
+  margin: 1vw 1vw;
 }
 button {
-  margin: 0vw 10vw;
+  margin: 10vh 10vw;
 }
 #s:hover {
   background-color: #8000ff;

@@ -1,43 +1,46 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-  <div v-show="this.getError.length > 0" class="error-msg">
-    {{ this.getError }}
-  </div>
-  <div v-show="this.getMsg.length > 0" class="success-msg">
-    {{ this.getMsg }}
-  </div>
+  
 
-  <div class="wrapper" v-if="getisLoggedIn">
+  <div id="page-parent">
+    <div class="wrapper" v-if="getisLoggedIn">
     <nav class="sidebar">
       <div class="box">
         <div class="log">
-          <img src="./linked_learning_image.png" height="70vw" width="70vw" class="user" />
+          <img id="profile" src="./assets/icons/linked_learning_image.png" height="70vw" width="70vw" class="user" />
         </div>
         <div class="log2">
           <ul class="sidebar-side">
             <li class="side-item">
-              <img src="./icons8-user-60.png" height="35vw" width="35vw" />
-              <a href="#" class="side-link"><b>Profile</b></a>
+              <img src="./assets/icons/icons8-user-60.png" height="35vw" width="35vw" />
+              <router-link to="/login" class="side-link"><span class="navlinks">Profile</span></router-link>
             </li>
             <li class="side-item">
-              <img src="./icons8-repository-50.png" height="35vw" width="35vw" />
-              <a href="#" class="side-link"><b>Courses</b></a>
+              <img src="./assets/icons/icons8-repository-50.png" height="35vw" width="35vw" />
+              <a href="#" class="side-link"><span class="navlinks">Courses</span></a>
             </li>
             <li class="side-item">
-              <img src="./icons8-gear-50.png" height="35vw" width="35vw" />
-              <a href="#" class="side-link"><b>Settings</b></a>
+              <img src="./assets/icons/icons8-gear-50.png" height="35vw" width="35vw" />
+              <a href="#" class="side-link"><span class="navlinks">Settings</span></a>
             </li>
             <li class="side-item">
-              <img src="./icons8-logout-rounded-64.png" />
-              <a @click="logoutUser" class="side-link"><b>Logout</b></a>
+              <img src="./assets/icons/icons8-logout-rounded-64.png" />
+              <a @click="logoutUser" class="side-link"><span class="navlinks">Logout</span></a>
             </li>
           </ul>
         </div>
       </div>
     </nav>
   </div>
-  <div class="container text-center">
-    <br />
+  </div>
+  
+  <div class="container" id ="main-page">
+    <div v-show="this.getError.length > 0" class="error-msg">
+      {{ this.getError }}
+    </div>
+    <div v-show="this.getMsg.length > 0" class="success-msg">
+      {{ this.getMsg }}
+    </div>
     <router-view />
   </div>
   <br /><br />
@@ -93,36 +96,60 @@ export default {
   list-style: none;
   text-decoration: none;
 }
+
+#page-parent{
+  display: flex;
+}
+
+#main-page{
+  flex: 80%;
+}
+#profile{
+  width: 50px;
+  height:50px
+}
+
+.side-item{
+  text-align: center;
+}
 .wrapper {
   display: flex;
   position: fixed;
+  top: 0;
+  flex : 20%;
+  bottom: 100vh;
 }
 .wrapper .sidebar {
   width: 7.5vw;
-  height: 200vh;
+  height: 100vh;
   background-color: #212121;
 }
 a {
   color: white;
   margin: 0rem 1.5rem;
-  margin-left: 0.4rem;
-  margin-top: 0.5rem;
-  margin-bottom: 0.25rem;
+  
 }
 li {
   margin: 1rem 0rem;
 }
 ul {
-  margin-top: 10rem;
+  margin-top: 5rem;
+  padding-left: 0;
 }
+
+a{
+  text-decoration: none;
+}
+
 .user {
   border-radius: 50px;
   margin: auto;
   border: 3px solid #aba9a9;
 }
 img {
-  margin: 1rem 1rem;
-  margin-right: 2rem;
+  margin: 0.5rem 0.5rem;
+  width: 30px;
+  height: 30px;
 }
 .box {
   text-align: center;
