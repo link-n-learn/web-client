@@ -64,6 +64,7 @@
 import axios from "axios";
 import store from "../../store/mainIndex";
 import router from "../../router/index";
+
 export default {
   data() {
     return {

@@ -3,78 +3,79 @@
   <div class="heading text-center">
     <h3>Create a course</h3>
   </div>
-
   <div class="row" id="first">
     <div id="d" class="col-md-4" @click="detailsPage">Details</div>
     <div id="s" class="col-md-4" @click="syllabusPage">Syllabus</div>
     <div id="c" class="col-md-4" @click="contentPage">Content</div>
+
     <!-- <a href="#"><div id="d" class="col-md-4">Details</div></a>
       <a href="#"><div id="s" class="col-md-4">Syllabus</div></a>
       <a href="#"><div  id="c" class="col-md-4">Content</div></a> -->
   </div>
-
-  <!-- <div id="cd"><h4>Course Details</h4></div>
-    <div class="row" id="second">
-      <div class="column" id="inti">
-        <input
-          type="text"
-          class="form-control"
-          id="title"
-          placeholder="Title"
-          v-model="courseDetails.title"
-        />
-      </div>
-      <div class="column" id="empty"></div>
-      <div class="column" id="select"><h5>Select Category</h5></div>
+  <div id="cd" class="text-center"><h4>Course Details</h4></div>
+  <div class="row" id="second">
+    <div class="column" id="inti">
+      <input
+        type="text"
+        class="form-control"
+        id="title"
+        placeholder="Title"
+        v-model="courseDetails.title"
+      />
     </div>
-    <div class="row" id="third">
-      <div class="column" id="desc">
-        <textarea
-          type="text"
-          class="form-control"
-          id="description"
-          placeholder="Description"
-          rows="5"
-          cols="40"
-          v-model="courseDetails.description"
-        ></textarea>
-      </div>
-      <div class="column" id="empty2"></div>
-      <div class="column" id="scrollp">
-        <div class="scroll-bg">
-          <div class="scroll-div">
-            <div class="scroll-object" v-for="course in courseCategory" :key="course._id">
-              <div class="scr" @click="selectedCourses(course._id, course.title)">
-                {{ course.title }}
-              </div>
+    <div class="column" id="empty"></div>
+    <div class="column" id="select"><h5>Select Category</h5></div>
+  </div>
+  <div class="row" id="third">
+    <div class="column" id="desc">
+      <textarea
+        type="text"
+        class="form-control"
+        id="description"
+        placeholder="Description"
+        rows="5"
+        cols="40"
+        v-model="courseDetails.description"
+      ></textarea>
+    </div>
+    <div class="column" id="empty2"></div>
+    <div class="column" id="scrollp">
+      <div class="scroll-bg">
+        <div class="scroll-div">
+          <div class="scroll-object" v-for="course in courseCategory" :key="course._id">
+            <div class="scr" @click="selectedCourses(course._id, course.title)">
+              {{ course.title }}
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div id="fourth">
-      <label for="avatar">Thumbnail:</label>
-      <input
-        type="file"
-        id="avatar"
-        name="avatar"
-        accept="image/png,image/jpeg"
-        placeholder="Upload Photo"
-        @change="onImageSelected"
-      />
-    </div>
+  </div>
+  <div id="fourth">
+    <label for="avatar">Thumbnail:</label>
+    <input
+      type="file"
+      id="avatar"
+      name="avatar"
+      accept="image/png,image/jpeg"
+      placeholder="Upload Photo"
+      @change="onImageSelected"
+    />
+  </div>
 
-    <div id="fifth">
-      <button class="prev">Previous</button>
-      <button @click="creatingCourse()">Save</button>
-      <button>Next</button>
-    </div> -->
+  <div id="fifth">
+    <button class="prev">Previous</button>
+    <button @click="creatingCourse()">Save</button>
+    <button>Next</button>
+  </div>
 </template>
 
 <script>
-import store from "../../store/mainIndex";
+// import store from "../../store/mainIndex";
 import axios from "axios";
+import { mapGetters } from "vuex";
 import router from "../../router/index";
+
 export default {
   data() {
     return {
@@ -88,11 +89,16 @@ export default {
       },
       active: false,
       selectedImage: "",
-      isDetailsPage: true,
-      isSyllabusPage: false,
-      isContentPage: false,
     };
   },
+  computed: mapGetters([
+    "getError",
+    "getMsg",
+    "getisLoggedIn",
+    "getRefreshToken",
+    "getloggedInUser",
+    "getcourseId",
+  ]),
   async beforeCreate() {
     const information = await axios.get("course/category");
     console.log("Course Category API\n");
@@ -136,10 +142,10 @@ export default {
         console.log(response);
         this.courseDetails.title = "";
         this.courseDetails.description = "";
-        await this.$store.dispatch("setMsg", response.data.msg);
-        await store.dispatch("setcategoryId", response.data.newCourse.categoryId);
-        console.log("From the getters\n");
-        console.log(this.getcategoryId);
+        this.$store.dispatch("setMsg", response.data.msg);
+        this.$store.dispatch("setcourseId", response.data.newCourse._id);
+        this.$store.dispatch("syncCourseIdLocalStorage");
+        console.log(response);
       } catch (err) {
         console.log(err);
       }
@@ -194,13 +200,15 @@ export default {
   border-right: 0rem;
   border-top-left-radius: 1rem;
   border-bottom-left-radius: 1rem;
-  /* background-color: #8000ff;
-  color: white; */
+  background-color: #8000ff;
+  color: white;
   box-shadow: 0px 2px #80808099;
 }
 #s {
   border-right: 0;
   border-left: 0;
+  background-color: #8000ff;
+  color: white;
   border-top: 1px #80808099 solid;
   box-shadow: 0px 2px #80808099;
 }
@@ -208,6 +216,8 @@ export default {
   border-left: 0rem;
   border-top-right-radius: 1rem;
   border-bottom-right-radius: 1rem;
+  background-color: #8000ff;
+  color: white;
   border-top: 1px #80808099 solid;
   box-shadow: 0px 2px #80808099;
 }
@@ -269,6 +279,7 @@ label {
   margin: 2vw 1vw;
   max-width: 100%;
   height: 17vw;
+  margin-top: -5rem;
 }
 #desc {
   border: 0;
@@ -322,7 +333,7 @@ a {
   color: black;
 }
 button {
-  background-color: #5020ff;
+  background-color: #8000ff;
   color: white;
   border-radius: 10px;
   border: 0;
@@ -338,6 +349,4 @@ button {
 .scr:hover {
   background-color: #80808099;
 }
-
-@import "~bootstrap/dist/css/bootstrap.css";
 </style>

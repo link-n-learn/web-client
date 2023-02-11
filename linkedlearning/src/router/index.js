@@ -4,6 +4,9 @@ import login from '../views/auth/login.vue'
 import store from '../store/mainIndex'
 import verify from '../views/auth/verify.vue'
 import dashboard from '../views/main_page/dashboard.vue'
+import syllabus from '../views/courses/syllabus.vue';
+import details from '../views/courses/details.vue';
+import content from '../views/courses/content.vue';
 
 const routes = [
   {
@@ -30,6 +33,33 @@ const routes = [
     },
     component : dashboard
   },
+  {
+    path : '/syllabusPage',
+    name : 'syllabus',
+    beforeEnter: (to, from, next) => {
+      if (to.name !== 'login' && !store.state.auth.isLoggedIn) next({ name: 'login' })
+      else next()
+    },
+    component : syllabus
+  },
+  {
+    path : '/details',
+    name : 'details',
+    beforeEnter: (to, from, next) => {
+      if (to.name !== 'login' && !store.state.auth.isLoggedIn) next({ name: 'login' })
+      else next()
+    },
+    component : details
+  },
+  {
+    path : '/content',
+    name : 'content',
+    beforeEnter: (to, from, next) => {
+      if (to.name !== 'login' && !store.state.auth.isLoggedIn) next({ name: 'login' })
+      else next()
+    },
+    component : content
+  }
   // {
   //   path: '/stockInfo',
   //   name : 'stockInfo',

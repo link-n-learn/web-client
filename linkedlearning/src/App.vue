@@ -77,6 +77,7 @@ export default {
 
         this.$store.dispatch("clearAuthState");
         this.$store.dispatch("setMsg", res.data.msg);
+        this.$store.dispatch("clearCourseIdState");
         router.push({ name: "login" });
       } catch (err) {
         console.log(this.getisLoggedIn);
