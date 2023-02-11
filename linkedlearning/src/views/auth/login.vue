@@ -48,7 +48,15 @@
 import axios from "axios";
 import router from "../../router/index";
 import store from "../../store/mainIndex";
+import { mapGetters } from "vuex";
 export default {
+  computed: mapGetters([
+    "getError",
+    "getMsg",
+    "getisLoggedIn",
+    "getRefreshToken",
+    "getloggedInUser",
+  ]),
   data() {
     return {
       loginDetails: {
@@ -67,6 +75,7 @@ export default {
         const response = await axios.patch("auth/login", login_data);
         if (response.status == 200) {
           await store.dispatch("setLoggedInUser", response.data);
+          // console.log("In Login redirect");
           router.push({ name: "dashboard" });
         }
       } catch (err) {

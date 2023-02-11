@@ -37,8 +37,7 @@
           />
           <input type="checkbox" name="agree" v-model="signupDetails.agree" />
           <label id="agree_i"
-            >I agree to the Terms and Conditions and Privacy policy</label
-          >
+            >I agree to the Terms and Conditions and Privacy policy</label>
         </div>
         <div class="col-6 offset-3 justify-content-center">
           <button id="button"><h6>Signup</h6></button>
@@ -55,6 +54,7 @@
 import axios from "axios";
 import store from "../../store/mainIndex";
 import router from "../../router/index";
+
 export default {
   data() {
     return {
