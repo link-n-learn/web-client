@@ -1,7 +1,7 @@
 import axios from 'axios'
 import store from '../store/mainIndex'
 import Routes from '../router/index'
-const baseURL = 'https://api-linkedlearning.onrender.com/'
+const baseURL = 'https://ba93-2405-201-d004-104b-ace1-f062-b016-9baa.ngrok.io/'
 axios.defaults.baseURL = baseURL;
 
 axios.defaults.headers.get["ngrok-skip-browser-warning"] = "*"

@@ -1,19 +1,9 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-  <header>
-    <div class="container">
-      <div class="row">
-        <div class="col"></div>
-        <div class="col">
-          <img src="./linked_learning_image.png" id="image"/>
-          <h2>Signup</h2>
-        </div>
-        <div class="col"></div>
-      </div>
-    </div>
-  </header>
-  <div class="container">
-    <form @submit.prevent="createNewAccount">
+    <img src="../../assets/linked_learning_image.png" id="image"/>
+    <h2>Signup</h2>
+    <div class="form-border">
+      <form @submit.prevent="createNewAccount">
       <div class="form-floating">
         <div class="col-6 offset-3">
           <p class="text-center">Email</p>
@@ -53,11 +43,11 @@
           <button id="button"><h6>Signup</h6></button>
         </div>
         <div class="col-6 offset-3">
-          <a href="/login">Already Have an Account?Login</a>
+          Already have an account <router-link to="/login" style="text-align: left;">Login</router-link>
         </div>
       </div>
     </form>
-  </div>
+    </div>
 </template>
 
 <script>
@@ -113,6 +103,20 @@ export default {
   border:1px solid black;
   border-radius:3px;
   color:white;
+  padding : 5px 15px;
+  margin: 2vh;
+}
+
+.form-border{
+  margin-left: 15vw;
+  margin-right: 15vw;
+  margin: 2vh;
+  padding: 1vh 0;
+}
+
+.form-control{
+  padding-top: 0.5vh 0;
+  padding-bottom: 1vh;
 }
 #image{
   height: 25vh;
