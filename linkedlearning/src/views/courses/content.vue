@@ -10,10 +10,35 @@
             </div>
             
   </div>
-            <div class="row" id="secondc">
+
+            <div id="secondc" v-for="section in courseContent" :key="section.id">
+              <div class="row" id="thirdc">
+                <input type="text" id="section-titlec" class="form-control" v-model="section.title" placeholder="    Section-Title">
+                <img src="../../assets/icons/delete.png" id="deletec">
+              </div>
+
+              <div class="row" v-for="lecture in section.secContent" :key="lecture.id" id="fourthc">
+                
+                <div class="column" id="space-1c">
+                        <img v-if="lecture.resourceType == 'video'" src="../../assets/icons/youtube.png" id="icon"> 
+                        <img v-if="lecture.resourceType == 'article'" src="../../assets/icons/article.png" id="icon"> 
+                </div>
+                <div class="column" id="space-2c">
+                        <h5>{{ lecture.title }}</h5>
+                </div>
+                <div class="column" id="space-3c">
+                        <img src="../../assets/icons/delete.png" id="icon"> 
+                </div>
+              </div>
+              <div class="row" id="sixthc">
+                <button class="buttonc" id="b1"><b>+Video</b></button>
+                <button class="buttonc" id="b2"><b>+Article</b></button>
+              </div>
+            </div>
+            <!-- <div id="secondc">
               <div class="row" id="thirdc">
                 <input type="text" id="section-titlec" class="form-control" placeholder="    Section-Title">
-                <img src="./delete.png" id="deletec">
+                <img src="../../assets/icons/delete.png" id="deletec">
               </div>
               <div class="row" id="fourthc">
                 <div class="column" id="space-1c">
@@ -23,25 +48,15 @@
                         <h5>What is web development</h5>
                 </div>
                 <div class="column" id="space-3c">
-                        <img src="./delete.png" id="youtube"> 
+                        <img src="../../assets/icons/delete.png" id="youtube"> 
                 </div>
               </div>
-              <div class="row" id="fifthc">
-                <div class="column" id="space-1c">
-                        <img src="../../assets/icons/article.png" id="youtube"> 
-                </div>
-                <div class="column" id="space-2c">
-                        <h5>What is web development</h5>
-                </div>
-                <div class="column" id="space-3c">
-                        <img src="./delete.png" id="youtube"> 
-                </div>
-              </div>
+             
               <div class="row" id="sixthc">
                 <button class="buttonc" id="b1"><b>+Video</b></button>
                 <button class="buttonc" id="b2"><b>+Article</b></button>
               </div>
-            </div>
+            </div> -->
             
             <div class="row" id="seventhc">
                 <button id="addc"><b>+Section</b></button>
@@ -51,8 +66,52 @@
 </template>
 
 <script>
+// import router from "../../router/index";
+import { mapGetters } from "vuex";
+import axios from "axios";
 export default {
+  computed: mapGetters(["getcourseId"]),
+  data(){
+    return {
 
+      courseContent : [
+        {
+          title : "",
+          id :"kjdhajkhrjajfbajkbf",
+          secContent : [
+            {
+              id : "fjhwkfkjsdnf",
+              resourceType : "video",
+              link : "",
+              title : "How internet works"
+            },
+            {
+              id : "fjhwkfkjsdnf",
+              resourceType : "article",
+              link : "",
+              title : "How internet works"
+            }
+
+          ]
+        }
+      ]
+
+
+    }
+  },
+  async mounted(){
+    this.$store.dispatch("syncCourseIdLocalStorage");
+    try{
+      console.log("sending request")
+      const response = await axios.get(`course/${this.getcourseId}/content`)
+      console.log(response.data.content.length)
+      if(response.data.content.length != 0){
+        this.courseContent = response.data.content
+      }
+    }catch(err){
+      console.log(err)
+    }
+  }
 }
 </script>
 
@@ -97,11 +156,11 @@ export default {
 #section-titlec{
       width:50vw;
       height:2.5vw;
-      box-shadow: 0px 0px 3px 3px grey;
-      
+      box-shadow: 0px 3px 3px grey;
+      border-radius: 1px solid grey;
       border-radius: 0.5rem;
 }
-#youtube{
+#icon{
     height: 2vw;
     width: 2vw;
 }
@@ -160,22 +219,13 @@ export default {
   margin-top:2vw;
   margin-bottom:1vw;
   margin-left:2vw;
-  box-shadow:  0px 0px 3px 3px grey;
+  box-shadow:  0px 3px 3px grey;
   background-color: white;
+  border: 1px solid grey;
   border-radius: 0.3rem;
   color: black;
  }
- #fifthc{
-  width:60vw;
-  height:3vw;
-  margin-top:2vw;
-  margin-bottom:1vw;
-  margin-left:2vw;
-  box-shadow: 0px 0px 3px 3px grey;
-  border-radius: 0.3rem;
-  background-color: white;
-  color: black;
- }
+
  #space-2c{
   border:0;
   margin-top:0.5vw;
