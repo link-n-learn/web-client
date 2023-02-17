@@ -68,6 +68,7 @@
           </div>
         </div>
 
+
         <div class="row" id="sixthc">
           <button
             @click="addLecture('video', section._id)"
@@ -94,6 +95,46 @@
     <div class="row" id="seventhc">
       <button @click="addSection" id="addc"><b>+ Section</b></button>
     </div>
+
+    <div class="modal-cus" v-if="addContent.modalShow">
+      <div class="modal-content">
+        <h3>Lecture details</h3>
+        <input
+            type="text"
+            id="section-titlec"
+            v-model="addContent.title"
+            placeholder="Enter lecture title"
+          />
+      <input
+            type="text"
+            id="section-titlec"
+            v-model="addContent.link"
+            placeholder="Enter the link"
+          />
+          
+          <div class="row">
+          <button
+            @click="addContent.modalShow = false"
+            class="buttonc"
+            id="b1"
+            style="color : white;background-color: red;"
+          >
+            <b>Cancel</b>
+          </button>
+          <button
+            class="buttonc"
+            id="b2"
+            @click="addLectureInCourse()"
+            style="color : white;background-color: green;"
+          >
+            <b>Save</b>
+          </button>
+        </div>
+      </div>
+      
+    </div>
+    
+
   </div>
 </template>
 
@@ -106,23 +147,30 @@ export default {
   computed: mapGetters(["getcourseId"]),
   data() {
     return {
+      addContent:{
+        modalShow : false,
+        link : "some link",
+        linkType:"",
+        sectionId : "",
+        title : ""
+      },
       courseContent: [
         {
           title: "",
           _id: ObjectID(Date.now()).toHexString(),
           secContent: [
-            {
-              _id: ObjectID(Date.now()).toHexString(),
-              resourceType: "video",
-              link: "",
-              title: "How internet works",
-            },
-            {
-              _id: ObjectID(Date.now()).toHexString(),
-              resourceType: "article",
-              link: "",
-              title: "How internet works",
-            },
+            // {
+            //   _id: ObjectID(Date.now()).toHexString(),
+            //   resourceType: "video",
+            //   link: "",
+            //   title: "How internet works",
+            // },
+            // {
+            //   _id: ObjectID(Date.now()).toHexString(),
+            //   resourceType: "article",
+            //   link: "",
+            //   title: "How internet works",
+            // },
           ],
         },
       ],
@@ -173,10 +221,27 @@ export default {
         }
       }
     },
-    SaveButton(){
+    async SaveButton(){
+      const response = await axios.patch(`/course/${this.getcourseId}/content` , {content : this.courseContent});
+      console.log(response);
+    },
+    addLecture(type , sectionId){
+      this.addContent.modalShow = true;
+      this.addContent.linkType = type;
+      this.addContent.sectionId = sectionId
+    },
+    addLectureInCourse(){
       this.courseContent.forEach(section=>{
-        console.log({...section})
+        if(section._id == this.addContent.sectionId){
+          section.secContent.push({
+            title : this.addContent.title,
+            link : this.addContent.link,
+            resourceType : this.addContent.linkType,
+            _id : ObjectID(Date.now()).toHexString()
+          })
+        }
       })
+      this.addContent.modalShow = false
     }
   },
   async mounted() {
@@ -232,7 +297,8 @@ export default {
   margin-left: 2vw;
 }
 #section-titlec {
-  width: 50vw;
+  width: 75%;
+  border: 1px solid grey;
   height: 2.5vw;
   box-shadow: 0px 3px 3px grey;
   border-radius: 1px solid grey;
@@ -245,7 +311,7 @@ export default {
 #deletec {
   height: 2vw;
   width: 4vw;
-  margin-left: 18vw;
+  margin-left: 9vw;
   margin-top: 0.5vw;
 }
 #secondc {
@@ -260,8 +326,9 @@ export default {
   margin-top: 2vw;
   margin-left: 1vw;
 }
-#b1 {
+.buttonc {
   margin-left: 2vw;
+  margin-top: 2vh;
   margin-right: 2vw;
   background-color: #75737356;
   color: black;
@@ -269,14 +336,7 @@ export default {
   width: 10vw;
   height: 2vw;
 }
-#b2 {
-  margin-left: 0vw;
-  background-color: #75737356;
-  color: black;
-  border-radius: 1vw;
-  width: 10vw;
-  height: 2vw;
-}
+
 #addc {
   border-radius: 1vw;
   height: 2vw;
@@ -328,4 +388,22 @@ export default {
   opacity: 1;
   cursor: pointer;
 }
+
+.modal-cus{
+  width: 50vw;
+  height : 30vh;
+  background-color: white;
+  position :fixed;
+  top : 0;
+  left : 0;
+  margin-left: 30vw;
+  margin-top: 30vh;
+  border: 1px solid black;
+  border-radius: 25px;
+}
+
+.modal-content{
+  margin : 2vh 3vw;
+}
+
 </style>
