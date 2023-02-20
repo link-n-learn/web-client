@@ -30,7 +30,7 @@
           v-model="data.title"
         />
       </div>
-      <div class="column" id="dustbin"><img src="./delete.png" @click="DeleteButton(data)" /></div>
+      <div class="column" id="dustbin"><img src="../../assets/icons/delete.png" @click="DeleteButton(data)" /></div>
     </div>
     <div class="row" id="fourth">
       <input

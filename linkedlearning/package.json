@@ -11,8 +11,10 @@
     "axios": "^1.2.2",
     "bootstrap": "^5.2.3",
     "bootstrap-vue": "^2.23.1",
+    "bson-objectid": "^2.0.4",
     "core-js": "^3.8.3",
     "vue": "^3.2.13",
+    "vue-bs-modal": "^0.7.9",
     "vue-router": "^4.0.3",
     "vuex": "^4.0.0"
   },
