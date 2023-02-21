@@ -3,7 +3,7 @@ import signup from '../views/auth/signup.vue'
 import login from '../views/auth/login.vue'
 import store from '../store/mainIndex'
 import verify from '../views/auth/verify.vue'
-import dashboard from '../views/main_page/dashboard.vue'
+import dashboard from '../views/dashboard.vue'
 import syllabus from '../views/courses/syllabus.vue';
 import details from '../views/courses/details.vue';
 import content from '../views/courses/content.vue';
