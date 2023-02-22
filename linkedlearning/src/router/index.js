@@ -7,6 +7,7 @@ import dashboard from '../views/dashboard.vue'
 import syllabus from '../views/courses/syllabus.vue';
 import details from '../views/courses/details.vue';
 import content from '../views/courses/content.vue';
+import coursesDetails from '../views/courses/coursesShow/coursesDetails.vue'
 
 const routes = [
   {
@@ -59,7 +60,16 @@ const routes = [
       else next()
     },
     component : content
-  }
+  },
+  {
+    path: '/course/:id/details',
+    name: 'coursesDetailsShow',
+    beforeEnter: (to, from, next) => {
+      if (to.name !== 'login' && !store.state.auth.isLoggedIn) next({ name: 'login' })
+      else next()
+    },
+    component:coursesDetails
+  },
   // {
   //   path: '/stockInfo',
   //   name : 'stockInfo',

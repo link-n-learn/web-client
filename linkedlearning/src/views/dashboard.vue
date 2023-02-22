@@ -23,7 +23,9 @@
     <AdvertBar/>
     <h2 class="cur">Recommended Courses</h2>
     <div class="row" id="cards">
-    <CourseCard  v-for="course in courses" :key="course._id" :courses="course"/>
+    <CourseCard @click="getshowcourse(course._id)" v-for="course in courses" :key="course._id" :courses="course">
+        <router-link :to="`/course/${course._id}/details`"></router-link>
+    </CourseCard>
     </div>
   </div>
   </div>
@@ -77,6 +79,10 @@ export default{
            viewallpage(){
                 router.push({ name: "details" });
            },
+           getshowcourse(id)
+           {
+                router.push({ path : `/course/${id}/details`});
+           }
         },
   components:{
     FindBar,
