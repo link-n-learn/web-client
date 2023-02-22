@@ -1,5 +1,5 @@
 <template>
-    <div @click="getCourseDetails">
+    <div>
         <div class="row" id="maincd">
             <div class="column" id="titlecd">
                 <h2>{{ foundCourse.title }}</h2>
@@ -34,12 +34,12 @@
             </div>
         <div class="row">
             <div class="column" id="descpcd">
-            <h6>{{ foundCourse.descp }}</h6>
+            <p>{{ foundCourse.descp }}</p>
             </div>
             
         </div>
         <button>Enroll Now</button>
-        <hr/>
+        <hr />
     </div>
 </template>
 
@@ -80,6 +80,7 @@ export default{
     }
     hr{
         margin:3vw 0vw;
+        width: 70vw;
     }
     #box1{
         display:flex;

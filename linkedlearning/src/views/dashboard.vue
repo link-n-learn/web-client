@@ -81,6 +81,7 @@ export default{
            },
            getshowcourse(id)
            {
+            console.log("HIt")
                 router.push({ path : `/course/${id}/details`});
            }
         },
