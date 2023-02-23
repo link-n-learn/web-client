@@ -40,12 +40,17 @@
         </div>
         <button>Enroll Now</button>
         <hr/>
+        <div class="row" id="mid-nav">
+            <h6 class="nav">Syllabus</h6>
+            <h6 class="nav">Lecture</h6>
+        </div>
     </div>
 </template>
 
 <script>
 export default{
     name:'CourseHead',
+    
         props:{
             foundCourse:Object,
         }
@@ -54,6 +59,16 @@ export default{
 </script>
 
 <style scoped>
+#mid-nav{
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    margin:0vw 0vw;
+}
+    .nav{
+        margin:0vw 0vw;
+        width:7vw;
+    }
     #maincd{
         margin:0vw 0vw;
         border: 0vw;
@@ -80,6 +95,7 @@ export default{
     }
     hr{
         margin:3vw 0vw;
+        margin-bottom:1vw;
     }
     #box1{
         display:flex;
