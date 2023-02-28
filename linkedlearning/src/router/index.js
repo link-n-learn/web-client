@@ -6,8 +6,10 @@ import verify from '../views/auth/verify.vue'
 import dashboard from '../views/dashboard.vue'
 import syllabus from '../views/courses/syllabus.vue';
 import details from '../views/courses/details.vue';
+import searchCourse from '../views/searchCourse.vue';
 import content from '../views/courses/content.vue';
-import coursesDetails from '../views/courses/coursesShow/coursesDetails.vue'
+import coursesDetails from '../views/courses/coursesShow/coursesDetails.vue';
+import lectureShow from '../views/courses/coursesShow/lectureShow.vue';
 
 const routes = [
   {
@@ -62,13 +64,27 @@ const routes = [
     component : content
   },
   {
-    path: '/course/:id/details',
+    path: '/course/:course_id/details',
     name: 'coursesDetailsShow',
     beforeEnter: (to, from, next) => {
       if (to.name !== 'login' && !store.state.auth.isLoggedIn) next({ name: 'login' })
       else next()
     },
     component:coursesDetails
+  },
+  {
+    path: '/course/:course_id/lecture/:lecture_id',
+    name: 'lectureShow',
+    beforeEnter: (to, from, next) => {
+      if (to.name !== 'login' && !store.state.auth.isLoggedIn) next({ name: 'login' })
+      else next()
+    },
+    component:lectureShow
+  },
+  {
+    path : '/searchCourse',
+    name : 'searchCourse',
+    component : searchCourse
   },
   // {
   //   path: '/stockInfo',

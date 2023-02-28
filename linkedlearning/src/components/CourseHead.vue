@@ -38,8 +38,11 @@
             </div>
             
         </div>
-        <button>Enroll Now</button>
-
+        <button @click="getConfirm">Enroll Now</button>
+        <button v-if="!value" style="display:none;">Confirm</button>
+        <button v-if="value" @click="getEnsure">Confirm</button>
+        <p v-if="msgvalue" id="correct">{{ msg }}</p>
+        <P v-if="errvalue" id="wrong">Already enrolled</P>
         <hr/>
         <div class="row" id="mid-nav">
             <h6 class="nav">Syllabus</h6>
@@ -50,23 +53,85 @@
 </template>
 
 <script>
+import axios from 'axios';
+import { mapGetters } from 'vuex';
 export default{
+    created(){
+        this.course_id = this.$route.params.course_id
+    },
+    async mounted(){
+            console.log('ho'),
+            this.foundCourse = this.getfoundCourse
+            console.log('vuex')
+            console.log(this.foundCourse)
+
+    },
     name:'CourseHead',
-    
-        props:{
-            foundCourse:Object,
-        }
+        data(){
+            return{
+                value:false,
+                course_id:'',
+                msg:'',
+                msgvalue:false,
+                errvalue:false
+            }
+        },
+        methods:{
+            ...mapGetters(['getfoundCourse']),
+            getConfirm(){
+                this.value = true
+            },
+            async getEnsure(){
+                try{
+                    const data = {
+                    foundCourse: this.getfoundCourse,
+                    };
+                const response = await axios.patch(`/course/${this.course_id}/enroll`, data)
+                console.log('prev')
+                console.log(response.data);
+                this.msg = response.data.msg
+                this.msgvalue=true
+                }
+                catch(error){
+                    this.errorMsg='Error retreving data'
+                    console.log(error)
+                    this.errvalue=true
+                }
+            }
+            
+        },
+        computed: mapGetters(['getfoundCourse']),    
 }
 
 </script>
 
 <style scoped>
-#mid-nav{
+    #correct{
+        background-color: rgb(57, 231, 57);
+        border-radius: 0.5vw;
+        width:10vw;
+        box-shadow:2px 3px 2px 2px rgb(42, 146, 42);
+        color: white;
+        justify-content: center;
+        text-align: center;
+        margin:0vw 1vw;
+    }
+    #wrong{
+        background-color: rgb(252, 4, 4);
+        border-radius: 0.5vw;
+        width: 10vw;
+        box-shadow: 2px 3px 2px 2px rgb(192, 21, 21);
+        color: white;
+        justify-content: center;
+        text-align: center;
+        margin:0vw 1vw;
+    }
+    #mid-nav{
     justify-content: center;
     text-align: center;
     align-items: center;
     margin:0vw 0vw;
-}
+    }
     .nav{
         margin:0vw 0vw;
         width:7vw;

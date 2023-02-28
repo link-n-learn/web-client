@@ -1,12 +1,21 @@
 const state = {
     courseId : "",
+    foundCourse:""
 }
 const getters = {
     getcourseId : function(state) {
+        console.log('getter')
         return state.courseId;
+    },
+    getfoundCourse : function(state){
+        return state.foundCourse;
     }
 }
 const mutations = {
+    setfoundCourse:(state,foundCourse) => {
+        console.log('muta')
+        state.foundCourse = foundCourse;
+    },
     setcourseId: (state, courseId) => {
         state.courseId = courseId;
         localStorage.setItem("courseId", JSON.stringify(state));
@@ -20,6 +29,10 @@ const mutations = {
     }
 }
 const actions = {
+    setfoundCourse: ({ commit },foundCourse) => {
+    console.log('inaction'),
+        commit("setfoundCourse",foundCourse);
+    },
     syncCourseIdLocalStorage({ commit }) {
 
         const courseId = JSON.parse(localStorage.getItem('courseId'));

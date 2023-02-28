@@ -79,10 +79,10 @@ export default{
            viewallpage(){
                 router.push({ name: "details" });
            },
-           getshowcourse(id)
+           getshowcourse(course_id)
            {
             console.log("HIt")
-                router.push({ path : `/course/${id}/details`});
+                router.push({ path : `/course/${course_id}/details`});
            }
         },
   components:{

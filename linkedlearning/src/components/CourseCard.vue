@@ -22,7 +22,7 @@
                         <img id="creatorlogo" src="../../src/assets/icons/youtube.png"/>
                     </div>
                 <div class="column" id="course-creator">
-                    <small>Course creator</small>
+                    <small>{{ courses.owner.username }}</small>
                 </div>
                 <div class="column" id="enrolled">
                     <small>1000 enrolled</small>  
