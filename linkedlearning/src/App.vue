@@ -17,7 +17,7 @@
             </li>
             <li class="side-item">
               <img src="./assets/icons/icons8-repository-50.png" height="35vw" width="35vw" />
-              <a href="#" class="side-link"><span class="navlinks">Courses</span></a>
+              <router-link to="/dashboard" class="side-link"><span class="navlinks">Courses</span></router-link>
             </li>
             <li class="side-item">
               <img src="./assets/icons/icons8-gear-50.png" height="35vw" width="35vw" />

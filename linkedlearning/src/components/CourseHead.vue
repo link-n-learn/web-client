@@ -45,10 +45,9 @@
         <P v-if="errvalue" id="wrong">Already enrolled</P>
         <hr/>
         <div class="row" id="mid-nav">
-            <h6 class="nav">Syllabus</h6>
-            <h6 class="nav">Lecture</h6>
+            <h6 class="nav"><router-link :to="`/course/`+foundCourse._id+`/details`">Syllabus</router-link></h6>
+            <h6 class="nav"><router-link :to="`/course/`+foundCourse._id+`/lectures`">Lecture</router-link></h6>
         </div>
-        <hr />
     </div>
 </template>
 
@@ -61,7 +60,7 @@ export default{
     },
     async mounted(){
             console.log('ho'),
-            this.foundCourse = this.getfoundCourse
+            this.foundCourse = this.getfoundCourse()
             console.log('vuex')
             console.log(this.foundCourse)
 
@@ -73,7 +72,8 @@ export default{
                 course_id:'',
                 msg:'',
                 msgvalue:false,
-                errvalue:false
+                errvalue:false,
+                foundCourse : {}
             }
         },
         methods:{
@@ -83,10 +83,10 @@ export default{
             },
             async getEnsure(){
                 try{
-                    const data = {
-                    foundCourse: this.getfoundCourse,
-                    };
-                const response = await axios.patch(`/course/${this.course_id}/enroll`, data)
+                    // const data = {
+                    // foundCourse: this.getfoundCourse,
+                    // };
+                const response = await axios.patch(`/course/${this.course_id}/enroll`)
                 console.log('prev')
                 console.log(response.data);
                 this.msg = response.data.msg
@@ -99,13 +99,15 @@ export default{
                 }
             }
             
-        },
-        computed: mapGetters(['getfoundCourse']),    
+        } 
 }
 
 </script>
 
 <style scoped>
+a{
+    color: rgb(48, 48, 48);
+}
     #correct{
         background-color: rgb(57, 231, 57);
         border-radius: 0.5vw;
