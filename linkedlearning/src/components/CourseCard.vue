@@ -25,7 +25,7 @@
                     <small>{{ courses.owner.username }}</small>
                 </div>
                 <div class="column" id="enrolled">
-                    <small>1000 enrolled</small>  
+                    <small>{{ courses.EnrollmentCount }}  enrolled</small>  
                 </div>
                 
                 </div>
