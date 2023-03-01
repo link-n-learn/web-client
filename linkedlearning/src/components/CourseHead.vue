@@ -20,7 +20,7 @@
                     <small>400 reviews</small>
                 </div>
                 <div class="row" id="enrollcd">
-                    <small>1000 enrolled</small>
+                    <small>{{ foundCourse.EnrollmentCount }} enrolled</small>
                 </div>
                 <div class="row" id="box1">
                     <img id="creatorlogo" :src="foundCourse.image"/>

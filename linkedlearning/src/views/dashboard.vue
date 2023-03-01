@@ -5,17 +5,16 @@
     <AdvertismentBar />
     <div>
       <h2 class="cur">Search by catergories</h2>
-      <span v-for="category in categories" :key="category._id">
-        <b class="select-category">{{ category.title }}</b>
+      <span  v-for="category in categories" :key="category._id" @click="selectCategory(category._id)">
+        <b  class="select-category">{{ category.title }}</b>
       </span>
     </div>
     <hr />
     <div>
       <h2 class="cur">Currently learning</h2>
       <div class="row" id="cards">
-        <CourseCard :courses="courses[0]" />
-        <CourseCard :courses="courses[1]" />
-        <CourseCard :courses="courses[2]" />
+        <CourseCard v-for="course in limitedenroll" :key="course._id" :courses="course" />
+
       </div>
       <div id="viewdiv">
         <div id="viewall" @click="viewallpage"><b>View all</b></div>
@@ -46,13 +45,34 @@ import router from "../router/index";
 
 export default {
   name: "App",
-  created() {
+  async created() {
     this.getcourse(), this.getcategory();
+    const response = await axios.get('/course/enrolled');
+    console.log(response.data);
+    this.enrolledCourses = response.data.enrolledCourses
+    if(this.enrolledCourses.length<3){
+      for(var i=0;i<this.enrolledCourses.length;i++){
+      this.limitedenroll[i]=this.enrolledCourses[i]
+    }
+    console.log(this.limitedenroll)
+
+    }
+    else{
+      console.log('ho')
+      for(i=0;i<=2;i++){
+        
+      this.limitedenroll[i]=this.enrolledCourses[i]
+    }
+    }
+      
+    
   },
   data() {
     return {
       courses: [],
       categories: [],
+      enrolledCourses:[],
+      limitedenroll:[],
       errorMsg: "",
     };
   },
@@ -78,12 +98,26 @@ export default {
       }
     },
     viewallpage() {
-      router.push({ name: "details" });
+      router.push({ name: "viewEnroll" });
     },
     getshowcourse(course_id) {
       console.log("HIt");
       router.push({ path: `/course/${course_id}/details` });
     },
+    async selectCategory(category_id){
+      try {
+        console.log('sdf')
+        const response  = await axios.get(`/course/bycat?categoryId=${category_id}`)
+        console.log(response.data);
+        console.log(category_id);
+        console.log('a;lsds;a')
+        this.courses = response.data.courses;
+      } catch (error) {
+        this.errorMsg = "Error retreving data";
+        console.log(error);
+      }
+      
+    }
   },
   components: {
     FindBar,
