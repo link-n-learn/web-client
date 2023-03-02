@@ -46,21 +46,21 @@
         <hr/>
         <div class="row" id="mid-nav">
             <h6 class="nav"><router-link :to="`/course/`+foundCourse._id+`/details`">Syllabus</router-link></h6>
-            <h6 class="nav"><router-link :to="`/course/`+foundCourse._id+`/lectures`">Lecture</router-link></h6>
+            <h6 class="nav"><router-link :to="`/course/`+foundCourse._id+`/lecture`">Lecture</router-link></h6>
         </div>
       </div>
-    <div class="row">
+    <!-- <div class="row">
       <div class="column" id="descpcd">
         <p>{{ foundCourse.descp }}</p>
       </div>
-    </div>
-    <button @click="getConfirm">Enroll Now</button>
+    </div> -->
+    <!-- <button @click="getConfirm">Enroll Now</button>
     <button v-if="!value" style="display: none">Confirm</button>
     <button v-if="value" @click="getEnsure">Confirm</button>
     <p v-if="msgvalue" id="correct">{{ msg }}</p>
     <P v-if="errvalue" id="wrong">Already enrolled</P>
-    <hr />
-    <div class="row" id="mid-nav">
+    <hr /> -->
+    <!-- <div class="row" id="mid-nav">
       <h6 class="nav">
         <router-link :to="`/course/` + foundCourse._id + `/details`"
           >Syllabus</router-link
@@ -71,7 +71,7 @@
           >Lecture</router-link
         >
       </h6>
-    </div>
+    </div> -->
 </template>
 
 <script>
