@@ -38,6 +38,7 @@ export default {
     this.foundCourse.syllabus = syllabusCopy;
     if (response.status == 200) {
       await store.dispatch("setfoundCourse", this.foundCourse);
+      await this.$store.dispatch("syncfoundCourseLocalStorage");
     }
     this.parentIsReady = true;
   },
