@@ -1,7 +1,5 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-  
-
   <div id="page-parent">
     <div class="wrapper" v-if="getisLoggedIn">
     <nav class="sidebar">

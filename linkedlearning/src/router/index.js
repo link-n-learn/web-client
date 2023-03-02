@@ -84,7 +84,7 @@ const routes = [
   },
   
   {
-    path: '/course/:course_id/lecture/:lecture_id',
+    path: '/course/:course_id/lecture',
     name: 'lectureShow',
     beforeEnter: (to, from, next) => {
       if (to.name !== 'login' && !store.state.auth.isLoggedIn) next({ name: 'login' })
@@ -92,6 +92,15 @@ const routes = [
     },
     component:lectureShow
   },
+  // {
+  //   path: '/course/:course_id/lecture/:lecture_id',
+  //   name: 'lectureShow',
+  //   beforeEnter: (to, from, next) => {
+  //     if (to.name !== 'login' && !store.state.auth.isLoggedIn) next({ name: 'login' })
+  //     else next()
+  //   },
+  //   component:lectureShow
+  // },
   {
     path : '/searchCourse',
     name : 'searchCourse',
