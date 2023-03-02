@@ -1,36 +1,54 @@
 <template>
-  <div>
-    <div class="row" id="maincd">
-      <div class="column" id="titlecd">
-        <h2>{{ foundCourse.title }}</h2>
-      </div>
-      <div class="column" id="maincdstar">
-        <div class="row" id="box">
-          <div class="rating">
-            <img class="stars" src="../../src/assets/icons/goldstar.png" />
-            <img class="stars" src="../../src/assets/icons/goldstar.png" />
-            <img class="stars" src="../../src/assets/icons/goldstar.png" />
-            <img class="stars" src="../../src/assets/icons/goldstar.png" />
-            <img class="stars" src="../../src/assets/icons/silver.png" />
-          </div>
-          <div class="row" id="review">
-            <small>4.2</small>
-          </div>
-          <div class="row" id="review">
-            <small>400 reviews</small>
-          </div>
-          <div class="row" id="enrollcd">
-            <small>1000 enrolled</small>
-          </div>
-          <div class="row" id="box1">
-            <img id="creatorlogo" :src="foundCourse.image" />
-          </div>
-          <div class="row" id="creatorname">
-            <small>Course Creator</small>
-          </div>
+    <div>
+        <div class="row" id="maincd">
+            <div class="column" id="titlecd">
+                <h2>{{ foundCourse.title }}</h2>
+            </div>
+            <div class="column" id="maincdstar" >
+            <div class="row" id="box">
+                <div class="rating">
+                <img class="stars" src="../../src/assets/icons/goldstar.png"/>
+                <img class="stars" src="../../src/assets/icons/goldstar.png"/>
+                <img class="stars" src="../../src/assets/icons/goldstar.png"/>
+                <img class="stars" src="../../src/assets/icons/goldstar.png"/>
+                <img class="stars" src="../../src/assets/icons/silver.png"/>
+                </div>
+                <div class="row" id="review">
+                    <small>4.2</small>
+                </div>
+                <div class="row" id="review">
+                    <small>400 reviews</small>
+                </div>
+                <div class="row" id="enrollcd">
+                    <small>{{ foundCourse.EnrollmentCount }} enrolled</small>
+                </div>
+                <div class="row" id="box1">
+                    <img id="creatorlogo" :src="foundCourse.image"/>
+                </div>
+                <div class="row" id="creatorname">
+                    <small>Course Creator</small>
+                </div>
+            </div>
+            </div>
+            
+            </div>
+        <div class="row">
+            <div class="column" id="descpcd">
+            <p>{{ foundCourse.descp }}</p>
+            </div>
+            
+        </div>
+        <button @click="getConfirm">Enroll Now</button>
+        <button v-if="!value" style="display:none;">Confirm</button>
+        <button v-if="value" @click="getEnsure">Confirm</button>
+        <p v-if="msgvalue" id="correct">{{ msg }}</p>
+        <P v-if="errvalue" id="wrong">Already enrolled</P>
+        <hr/>
+        <div class="row" id="mid-nav">
+            <h6 class="nav"><router-link :to="`/course/`+foundCourse._id+`/details`">Syllabus</router-link></h6>
+            <h6 class="nav"><router-link :to="`/course/`+foundCourse._id+`/lectures`">Lecture</router-link></h6>
         </div>
       </div>
-    </div>
     <div class="row">
       <div class="column" id="descpcd">
         <p>{{ foundCourse.descp }}</p>
@@ -54,7 +72,6 @@
         >
       </h6>
     </div>
-  </div>
 </template>
 
 <script>

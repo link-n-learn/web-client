@@ -4,6 +4,7 @@ import login from '../views/auth/login.vue'
 import store from '../store/mainIndex'
 import verify from '../views/auth/verify.vue'
 import dashboard from '../views/dashboard.vue'
+import viewallEnroll from '../views/viewallEnroll.vue'
 import syllabus from '../views/courses/syllabus.vue';
 import details from '../views/courses/details.vue';
 import searchCourse from '../views/searchCourse.vue';
@@ -35,6 +36,15 @@ const routes = [
       else next()
     },
     component : dashboard
+  },
+  {
+    path : '/viewEnroll',
+    name : 'viewEnroll',
+    beforeEnter: (to, from, next) => {
+      if (to.name !== 'login' && !store.state.auth.isLoggedIn) next({ name: 'login' })
+      else next()
+    },
+    component : viewallEnroll
   },
   {
     path : '/syllabusPage',
@@ -72,6 +82,7 @@ const routes = [
     },
     component:coursesDetails
   },
+  
   {
     path: '/course/:course_id/lecture',
     name: 'lectureShow',
