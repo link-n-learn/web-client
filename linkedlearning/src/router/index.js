@@ -11,6 +11,7 @@ import searchCourse from '../views/searchCourse.vue';
 import content from '../views/courses/content.vue';
 import coursesDetails from '../views/courses/coursesShow/coursesDetails.vue';
 import lectureShow from '../views/courses/coursesShow/lectureShow.vue';
+import videoLecture from '../views/courses/coursesShow/videoLecture.vue';
 
 const routes = [
   {
@@ -92,65 +93,20 @@ const routes = [
     },
     component:lectureShow
   },
-  // {
-  //   path: '/course/:course_id/lecture/:lecture_id',
-  //   name: 'lectureShow',
-  //   beforeEnter: (to, from, next) => {
-  //     if (to.name !== 'login' && !store.state.auth.isLoggedIn) next({ name: 'login' })
-  //     else next()
-  //   },
-  //   component:lectureShow
-  // },
+  {
+    path: '/course/:course_id/lecture/:lecture_id',
+    name: 'videoLecture',
+    beforeEnter: (to, from, next) => {
+      if (to.name !== 'login' && !store.state.auth.isLoggedIn) next({ name: 'login' })
+      else next()
+    },
+    component:videoLecture
+  },
   {
     path : '/searchCourse',
     name : 'searchCourse',
     component : searchCourse
   },
-  // {
-  //   path: '/stockInfo',
-  //   name : 'stockInfo',
-  //   beforeEnter: (to, from, next) => {
-  //     if (to.name !== 'login' && !store.state.auth.isLoggedIn) next({ name: 'login' })
-  //     else next()
-  //   },
-  //   component : stockInfo
-  // },
-  // {
-  //   path : '/holdings',
-  //   name : 'holdings',
-  //   beforeEnter: (to, from, next) => {
-  //     if (to.name !== 'login' && !store.state.auth.isLoggedIn) next({ name: 'login' })
-  //     else next()
-  //   }, 
-  //   component : holdings
-  // },
-  // {
-  //   path : '/dashboard/sell',
-  //   name : 'selling',
-  //   beforeEnter: (to, from, next) => {
-  //     if (to.name !== 'login' && !store.state.auth.isLoggedIn) next({ name: 'login' })
-  //     else next()
-  //   },
-  //   component : selling
-  // },
-  // {
-  //   path : '/account',
-  //   name : 'account',
-  //   beforeEnter: (to, from, next) => {
-  //     if (to.name !== 'login' && !store.state.auth.isLoggedIn) next({ name: 'login' })
-  //     else next()
-  //   },
-  //   component : account
-  // },
-  // {
-  //   path: '/transaction',
-  //   name : 'transaction',
-  //   beforeEnter: (to, from, next) => {
-  //     if (to.name !== 'login' && !store.state.auth.isLoggedIn) next({ name: 'login' })
-  //     else next()
-  //   },
-  //   component : transaction
-  // }
 ]
 
 const router = createRouter({

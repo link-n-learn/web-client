@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/no-parsing-error -->
 <template>
   <div>
     <CourseHead />
@@ -7,11 +8,11 @@
     <div class="row" id="MainCard" v-for="item in i.secContent" :key="item">
       <div class="col" id="card1" v-if="item.resourceType == 'video'"><img src="../../../assets/icons/youtube.png"></div>
       <div class="col" id="card1" v-if="item.resourceType == 'article'"><img src="../../../assets/icons/article.png"></div>
-      <div class="col-6  text-center">{{ item.title }}</div>
+      <div class="col-6  text-center"><router-link :to="`/course/`+getfoundCourse._id+`/lecture/`+item._id" id="link">{{ item.title }}</router-link></div>
       <div class="col text-end" id="card2">Image</div>
     </div>
-    <!-- <iframe :src="embedUrl" width="560" height="315">Lewis Hamilton</iframe> -->
   </div>
+  <router-view />
 </template>
 
 <script>
@@ -31,6 +32,7 @@ export default {
     console.log(this.getfoundCourse);
     // Set the new URL with the video ID
     this.embedUrl = `https://www.youtube.com/embed/${videoId}`;
+    console.log(this.getfoundCourse._id);
   },
   components: {
     CourseHead,
@@ -57,5 +59,8 @@ export default {
 }
 #card2{
   padding-right: 2rem;
+}
+#link{
+  color: black;
 }
 </style>
