@@ -47,7 +47,7 @@
         <div class="row" id="mid-nav">
             <h6 class="nav"><router-link :to="`/course/`+foundCourse._id+`/details`">Syllabus</router-link></h6>
             <h6 class="nav"><router-link :to="`/course/`+foundCourse._id+`/lecture`">Lecture</router-link></h6>
-            <h6 class="nav"><router-link :to="`/course/`+foundCourse._id+`/discussion`">discussion</router-link></h6>
+            <h6 class="nav"><router-link :to="`/course/`+foundCourse._id+`/discussion`">Discussion</router-link></h6>
 
         </div>
       </div>

@@ -8,6 +8,7 @@
             placeholder="      Question title" 
             class="form-control" 
             id="title" 
+            style="box-shadow: 4px 2px 4px 2px #80808099; background-color: #d1cbcb4d;"
             v-model="newquestion.title"/>
             <textarea type="text"
                 class="form-control"
@@ -15,7 +16,8 @@
                 placeholder="    Details"
                 rows="5"
                 cols="40" 
-                v-model="newquestion.details">
+                style="box-shadow: 4px 4px 4px 4px #80808099; background-color: #d1cbcb4d;"
+                v-model="newquestion.descp">
             </textarea>
             <button @click="sendquestion">Submit</button>
             <p  v-if="msgvalue" id="correct">{{ msg }}</p>
@@ -31,7 +33,7 @@ export default{
             courses_id:'',
             newquestion:{
                 title:'',
-                details:'',
+                descp:'',
             },
             msg:"",
             msgvalue:false,
@@ -43,7 +45,7 @@ export default{
         this.courses_id = this.$route.params.course_id;
         const newquestionDetails = {
         question:this.newquestion
-      };
+        };
       console.log(newquestionDetails)
         
         try{

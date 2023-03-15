@@ -13,6 +13,7 @@ import coursesDetails from '../views/courses/coursesShow/coursesDetails.vue';
 import lectureShow from '../views/courses/coursesShow/lectureShow.vue';
 import discussionShow from '../views/courses/coursesShow/discussionShow.vue';
 import newQuestion from '../views/courses/discussionCourse/newQuestion.vue';
+import showQuestion from '../views/courses/discussionCourse/showQuestion.vue';
 import videoLecture from '../views/courses/coursesShow/videoLecture.vue';
 
 const routes = [
@@ -112,6 +113,15 @@ const routes = [
       else next()
     },
     component:newQuestion
+  },
+  {
+    path: '/course/:course_id/question/:question_id',
+    name: 'showQuestion',
+    beforeEnter: (to, from, next) => {
+      if (to.name !== 'login' && !store.state.auth.isLoggedIn) next({ name: 'login' })
+      else next()
+    },
+    component:showQuestion
   },
   {
     path: '/course/:course_id/lecture/:lecture_id',
