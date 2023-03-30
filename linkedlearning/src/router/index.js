@@ -4,6 +4,7 @@ import login from '../views/auth/login.vue'
 import store from '../store/mainIndex'
 import verify from '../views/auth/verify.vue'
 import dashboard from '../views/dashboard.vue'
+import profileShow from '../views/profileShow.vue'
 import viewallEnroll from '../views/viewallEnroll.vue'
 import syllabus from '../views/courses/syllabus.vue';
 import details from '../views/courses/details.vue';
@@ -31,6 +32,11 @@ const routes = [
     path: '/signup/verify',
     name : 'verify',
     component : verify
+  },
+  {
+    path: '/user/',
+    name : 'user',
+    component : profileShow
   },
   {
     path : '/dashboard',

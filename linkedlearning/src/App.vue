@@ -11,7 +11,7 @@
           <ul class="sidebar-side">
             <li class="side-item">
               <img src="./assets/icons/icons8-user-60.png" height="35vw" width="35vw" />
-              <router-link to="/login" class="side-link"><span class="navlinks">Profile</span></router-link>
+              <router-link to="/user" class="side-link"><span class="navlinks">Profile</span></router-link>
             </li>
             <li class="side-item">
               <img src="./assets/icons/icons8-repository-50.png" height="35vw" width="35vw" />
