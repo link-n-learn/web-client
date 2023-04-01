@@ -87,6 +87,9 @@ export default {
         _id: "",
         title: "",
       },
+      searchdetails:{
+        title:"",
+      },
       active: false,
       selectedImage: "",
     };
@@ -149,6 +152,9 @@ export default {
       } catch (err) {
         console.log(err);
       }
+    },
+    getsearch(searchdetails){
+        alert(searchdetails.title)
     },
     onImageSelected(event) {
       this.selectedImage = event.target.files[0];

@@ -40,6 +40,7 @@
     import axios from 'axios';
     import CourseCard from "../components/CourseCard.vue";
     import AdvertBar from "../components/AdvertBar.vue";
+    import router from '../router/index';
     
     export default{
         created(){
@@ -77,7 +78,11 @@
                 catch(err){
                     console.log(err)
                 }
-            }
+            },
+            getshowcourse(course_id){
+                console.log(course_id)
+                router.push({ name : 'details' });
+            },
         },
         components:{
             CourseCard,

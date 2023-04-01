@@ -1,7 +1,7 @@
 <template>
     
-    <div class="row" id="firstdh">
-        <input @click="getcourse" type="text" class="form-control" id="searchdh" placeholder="    Search For Courses"/>
+    <div @click="getsearchs(title)" class="row" id="firstdh">
+        <input @click="getcourse" v-model="title" type="text" class="form-control" id="searchdh" placeholder="    Search For Courses"/>
     </div>
     
 </template>
@@ -9,6 +9,14 @@
 <script>
     export default{
         name:'FindBar',
+        data(){
+            return{
+                    title:"",
+            }
+        },
+        props:{
+            getsearchs:Function
+        }
     }
 </script>
 <style>
