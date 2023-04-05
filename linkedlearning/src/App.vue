@@ -71,6 +71,8 @@ export default {
   ]),
   beforeMount: function () {
     this.$store.dispatch("syncAuthLocalStorage");
+    this.$store.dispatch("syncfoundCourseLocalStorage");
+    this.$store.dispatch("syncCourseIdLocalStorage");
   },
   methods: {
     logoutUser: async function () {

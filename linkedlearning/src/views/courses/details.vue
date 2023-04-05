@@ -42,7 +42,11 @@
     <div class="column" id="scrollp">
       <div class="scroll-bg">
         <div class="scroll-div">
-          <div class="scroll-object" v-for="course in courseCategory" :key="course._id">
+          <div
+            class="scroll-object"
+            v-for="course in courseCategory"
+            :key="course._id"
+          >
             <div class="scr" @click="selectedCourses(course._id, course.title)">
               {{ course.title }}
             </div>
@@ -87,11 +91,12 @@ export default {
         _id: "",
         title: "",
       },
-      searchdetails:{
-        title:"",
+      searchdetails: {
+        title: "",
       },
       active: false,
       selectedImage: "",
+      responseCourseId: "",
     };
   },
   computed: mapGetters([
@@ -107,7 +112,12 @@ export default {
     console.log("Course Category API\n");
     console.log(information.data.categories);
     this.courseCategory = information.data.categories;
-    // console.log(this.courseDetails);
+  },
+  async mounted() {
+    const response = await axios.get(`course/details/${this.getcourseId}`);
+    this.courseDetails.title = response.data.foundCourse.title;
+    this.courseDetails.description = response.data.foundCourse.descp;
+    this.responseCourseId = response.data.foundCourse._id;
   },
   methods: {
     selectedCourses(_id, title) {
@@ -122,39 +132,52 @@ export default {
       // console.log(this.courseDetails.description);
     },
     async creatingCourse() {
-      console.log(this.selectedImage);
-      const courseInformation = {
-        title: this.courseDetails.title,
-        descp: this.courseDetails.description,
-        categoryId: this.courseCategory._id,
-      };
-      this.active = !this.active;
+      if (this.getcourseId == this.responseCourseId) {
+        //update course
+        const response = await axios.put(`course/details/${this.getcourseId}`, {
+          title: this.courseDetails.title,
+          descp: this.courseDetails.description,
+        });
 
-      console.log("After clicking the save button");
-      console.log(courseInformation);
+        if (response.status == 200) {
+          console.log("Edited course");
+        } else {
+          console.log("failed");
+        }
+      } else {
+        const courseInformation = {
+          title: this.courseDetails.title,
+          descp: this.courseDetails.description,
+          categoryId: this.courseCategory._id,
+        };
+        this.active = !this.active;
 
-      const fd = new FormData();
-      fd.append("thumbnail", this.selectedImage, this.selectedImage.name);
-      fd.append("title", this.courseDetails.title);
-      fd.append("descp", this.courseDetails.description);
-      fd.append("categoryId", this.courseCategory._id);
+        console.log("After clicking the save button");
+        console.log(courseInformation);
 
-      try {
-        const response = await axios.post("course/details", fd);
-        console.log("The response is\n");
-        console.log(response);
-        this.courseDetails.title = "";
-        this.courseDetails.description = "";
-        this.$store.dispatch("setMsg", response.data.msg);
-        this.$store.dispatch("setcourseId", response.data.newCourse._id);
-        this.$store.dispatch("syncCourseIdLocalStorage");
-        console.log(response);
-      } catch (err) {
-        console.log(err);
+        const fd = new FormData();
+        fd.append("thumbnail", this.selectedImage, this.selectedImage.name);
+        fd.append("title", this.courseDetails.title);
+        fd.append("descp", this.courseDetails.description);
+        fd.append("categoryId", this.courseCategory._id);
+
+        try {
+          const response = await axios.post("course/details", fd);
+          console.log("The response is\n");
+          console.log(response);
+          this.courseDetails.title = "";
+          this.courseDetails.description = "";
+          this.$store.dispatch("setMsg", response.data.msg);
+          this.$store.dispatch("setcourseId", response.data.newCourse._id);
+          this.$store.dispatch("syncCourseIdLocalStorage");
+          console.log(response);
+        } catch (err) {
+          console.log(err);
+        }
       }
     },
-    getsearch(searchdetails){
-        alert(searchdetails.title)
+    getsearch(searchdetails) {
+      alert(searchdetails.title);
     },
     onImageSelected(event) {
       this.selectedImage = event.target.files[0];
@@ -169,13 +192,12 @@ export default {
     },
     contentPage() {
       router.push({ name: "content" });
-    }
+    },
   },
 };
 </script>
 
 <style>
-
 .heading {
   text-align: center;
   justify-content: center;
