@@ -9,7 +9,7 @@
       <div class="col" id="card1" v-if="item.resourceType == 'video'"><img src="../../../assets/icons/youtube.png"></div>
       <div class="col" id="card1" v-if="item.resourceType == 'article'"><img src="../../../assets/icons/article.png"></div>
       <div class="col-6  text-center"><router-link :to="`/course/`+getfoundCourse._id+`/lecture/`+item._id" id="link">{{ item.title }}</router-link></div>
-      <div class="col text-end" id="card2">Image</div>
+      <div class="col text-end" id="card2"></div>
     </div>
   </div>
   <router-view />
@@ -48,10 +48,12 @@ export default {
   padding-top: 2.5rem;
 }
 #MainCard{
-  background: rgb(243, 240, 240);
+  box-shadow: 4px 2px 4px 2px #80808099;
+  background-color: #d1cbcb4d;
+
   font-size: 1.5rem;
   width: 85%;
-  border-radius: 1.2rem;
+  border-radius: 0.5vw;
   margin-top:1.5rem;
 }
 #card1{

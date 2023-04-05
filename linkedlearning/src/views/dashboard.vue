@@ -1,7 +1,7 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <div>
-    <FindBar />
+    <FindBar :getsearchs="getshowsearch" @click="getsearchcourse"/>
     <AdvertismentBar />
     <div>
       <h2 class="cur">Search by catergories</h2>
@@ -74,6 +74,7 @@ export default {
       enrolledCourses:[],
       limitedenroll:[],
       errorMsg: "",
+      title:"",
     };
   },
   methods: {
@@ -97,12 +98,26 @@ export default {
         console.log(error);
       }
     },
+    async getsearchcourse(){
+      try {
+        const response = await axios.get(`course/search?title=${this.title}`);
+        console.log(response.data);
+        this.courses = response.data.courses;
+      } catch (error) {
+        this.errorMsg = "Error retreving data";
+        console.log(error);
+      }
+    },
     viewallpage() {
       router.push({ name: "viewEnroll" });
     },
     getshowcourse(course_id) {
       console.log("HIt");
       router.push({ path: `/course/${course_id}/details` });
+    },
+    getshowsearch(title){
+      console.log(title)
+      this.title = title
     },
     async selectCategory(category_id){
       try {
@@ -125,7 +140,7 @@ export default {
     AdvertBar,
     CourseCard,
   },
-};
+}
 </script>
 
 <style>
