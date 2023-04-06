@@ -1,68 +1,55 @@
 <template>
-    <div>
-        <div class="row" id="maincd">
-            <div class="column" id="titlecd">
-                <h2>{{ foundCourse.title }}</h2>
-            </div>
-            <div class="column" id="maincdstar" >
-            <div class="row" id="box">
-                <div class="rating">
-                <img class="stars" src="../../src/assets/icons/goldstar.png"/>
-                <img class="stars" src="../../src/assets/icons/goldstar.png"/>
-                <img class="stars" src="../../src/assets/icons/goldstar.png"/>
-                <img class="stars" src="../../src/assets/icons/goldstar.png"/>
-                <img class="stars" src="../../src/assets/icons/silver.png"/>
-                </div>
-                <div class="row" id="review">
-                    <small>4.2</small>
-                </div>
-                <div class="row" id="review">
-                    <small>400 reviews</small>
-                </div>
-                <div class="row" id="enrollcd">
-                    <small>{{ foundCourse.EnrollmentCount }} enrolled</small>
-                </div>
-                <div class="row" id="box1">
-                    <img id="creatorlogo" :src="foundCourse.image"/>
-                </div>
-                <div class="row" id="creatorname">
-                    <small>Course Creator</small>
-                </div>
-            </div>
-            </div>
-            
-            </div>
-        <div class="row">
-            <div class="column" id="descpcd">
-            <p>{{ foundCourse.descp }}</p>
-            </div>
-            
-        </div>
-        <button @click="getConfirm">Enroll Now</button>
-        <button v-if="!value" style="display:none;">Confirm</button>
-        <button v-if="value" @click="getEnsure">Confirm</button>
-        <p v-if="msgvalue" id="correct">{{ msg }}</p>
-        <P v-if="errvalue" id="wrong">Already enrolled</P>
-        <hr/>
-        <div class="row" id="mid-nav">
-            <h6 class="nav"><router-link :to="`/course/`+foundCourse._id+`/details`">Syllabus</router-link></h6>
-            <h6 class="nav"><router-link :to="`/course/`+foundCourse._id+`/lecture`">Lecture</router-link></h6>
-            <h6 class="nav"><router-link :to="`/course/`+foundCourse._id+`/discussion`">Discussion</router-link></h6>
-
+  <div>
+    <div class="row" id="maincd">
+      <div class="column" id="titlecd">
+        <h2>{{ foundCourse.title }}</h2>
+      </div>
+      <div class="column" id="maincdstar">
+        <div class="row" id="box">
+          <div class="rating">
+            <img
+              class="stars"
+              src="../../src/assets/icons/goldstar.png"
+              v-for="i in rate"
+              :key="i"
+            />
+            <img
+              class="stars"
+              src="../../src/assets/icons/silver.png"
+              v-for="i in 5 - rate"
+              :key="i"
+            />
+          </div>
+          <div class="row" id="review">
+            <small>{{ ratingLen }} ratings </small>
+          </div>
+          <div class="row" id="enrollcd">
+            <small>{{ foundCourse.EnrollmentCount }} enrolled</small>
+          </div>
         </div>
       </div>
-    <!-- <div class="row">
+    </div>
+    <div class="row">
       <div class="column" id="descpcd">
         <p>{{ foundCourse.descp }}</p>
       </div>
-    </div> -->
-    <!-- <button @click="getConfirm">Enroll Now</button>
+    </div>
+
+    <div class="rate-in">
+      <h5>Rate the course</h5>
+      <button @click="rateCourse(5)" class="rate-btn">5</button>
+      <button @click="rateCourse(4)" class="rate-btn">4</button>
+      <button @click="rateCourse(3)" class="rate-btn">3</button>
+      <button @click="rateCourse(2)" class="rate-btn">2</button>
+      <button @click="rateCourse(1)" class="rate-btn">1</button>
+    </div>
+    <button @click="getConfirm">Enroll Now</button>
     <button v-if="!value" style="display: none">Confirm</button>
     <button v-if="value" @click="getEnsure">Confirm</button>
     <p v-if="msgvalue" id="correct">{{ msg }}</p>
     <P v-if="errvalue" id="wrong">Already enrolled</P>
-    <hr /> -->
-    <!-- <div class="row" id="mid-nav">
+    <hr />
+    <div class="row" id="mid-nav">
       <h6 class="nav">
         <router-link :to="`/course/` + foundCourse._id + `/details`"
           >Syllabus</router-link
@@ -73,7 +60,13 @@
           >Lecture</router-link
         >
       </h6>
-    </div> -->
+      <h6 class="nav">
+        <router-link :to="`/course/` + foundCourse._id + `/discussion`"
+          >Discussion</router-link
+        >
+      </h6>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -84,9 +77,14 @@ export default {
     this.course_id = this.$route.params.course_id;
   },
   async mounted() {
-    console.log("ho"), (this.foundCourse = this.getfoundCourse());
-    console.log("vuex");
-    console.log(this.foundCourse);
+    this.foundCourse = this.getfoundCourse();
+    this.foundCourse.ratings.forEach((rating) => {
+      this.ratingTotal += rating.rate;
+    });
+    if (this.foundCourse.ratings.length > 0) {
+      this.rate = this.ratingTotal / this.foundCourse.ratings.length;
+      this.ratingLen = this.foundCourse.ratings.length;
+    }
   },
   computed: mapGetters([
     "getError",
@@ -104,6 +102,9 @@ export default {
       msgvalue: false,
       errvalue: false,
       foundCourse: {},
+      ratingTotal: 0,
+      rate: 0,
+      ratingLen: 0,
     };
   },
   methods: {
@@ -113,9 +114,6 @@ export default {
     },
     async getEnsure() {
       try {
-        // const data = {
-        // foundCourse: this.getfoundCourse,
-        // };
         const response = await axios.patch(`/course/${this.course_id}/enroll`);
         console.log("prev");
         console.log(response.data);
@@ -125,6 +123,16 @@ export default {
         this.errorMsg = "Error retreving data";
         console.log(error);
         this.errvalue = true;
+      }
+    },
+    async rateCourse(rate) {
+      const response = await axios.patch(
+        `course/${this.foundCourse._id}/rate?rate=${rate}`
+      );
+      if (response.status == 200) {
+        console.log("rated the course");
+      } else {
+        console.log("Not able to rate");
       }
     },
   },
@@ -257,6 +265,12 @@ button {
   margin: 0vw 0vw;
   height: 1.6vw;
   width: 1.6vw;
+}
+
+.rate-btn {
+  background-color: #888888;
+  width: 3vw;
+  margin: 1vh;
 }
 
 @import "~bootstrap/dist/css/bootstrap.css";

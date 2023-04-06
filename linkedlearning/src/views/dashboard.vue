@@ -1,20 +1,27 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <div>
-    <FindBar :getsearchs="getshowsearch" @click="getsearchcourse"/>
+    <FindBar :getsearchs="getshowsearch" @click="getsearchcourse" />
     <AdvertismentBar />
     <div>
       <h2 class="cur">Search by catergories</h2>
-      <span  v-for="category in categories" :key="category._id" @click="selectCategory(category._id)">
-        <b  class="select-category">{{ category.title }}</b>
+      <span
+        v-for="category in categories"
+        :key="category._id"
+        @click="selectCategory(category._id)"
+      >
+        <b class="select-category">{{ category.title }}</b>
       </span>
     </div>
     <hr />
     <div>
       <h2 class="cur">Currently learning</h2>
       <div class="row" id="cards">
-        <CourseCard v-for="course in limitedenroll" :key="course._id" :courses="course" />
-
+        <CourseCard
+          v-for="course in limitedenroll"
+          :key="course._id"
+          :courses="course"
+        />
       </div>
       <div id="viewdiv">
         <div id="viewall" @click="viewallpage"><b>View all</b></div>
@@ -22,7 +29,6 @@
       <AdvertBar />
       <h2 class="cur">Recommended Courses</h2>
       <div class="row" id="cards">
-        
         <CourseCard
           v-for="course in courses"
           :key="course._id"
@@ -47,34 +53,28 @@ export default {
   name: "App",
   async created() {
     this.getcourse(), this.getcategory();
-    const response = await axios.get('/course/enrolled');
+    const response = await axios.get("/course/enrolled");
     console.log(response.data);
-    this.enrolledCourses = response.data.enrolledCourses
-    if(this.enrolledCourses.length<3){
-      for(var i=0;i<this.enrolledCourses.length;i++){
-      this.limitedenroll[i]=this.enrolledCourses[i]
+    this.enrolledCourses = response.data.enrolledCourses;
+    if (this.enrolledCourses.length < 3) {
+      for (var i = 0; i < this.enrolledCourses.length; i++) {
+        this.limitedenroll[i] = this.enrolledCourses[i];
+      }
+      console.log(this.limitedenroll);
+    } else {
+      for (i = 0; i <= 2; i++) {
+        this.limitedenroll[i] = this.enrolledCourses[i];
+      }
     }
-    console.log(this.limitedenroll)
-
-    }
-    else{
-      console.log('ho')
-      for(i=0;i<=2;i++){
-        
-      this.limitedenroll[i]=this.enrolledCourses[i]
-    }
-    }
-      
-    
   },
   data() {
     return {
       courses: [],
       categories: [],
-      enrolledCourses:[],
-      limitedenroll:[],
+      enrolledCourses: [],
+      limitedenroll: [],
       errorMsg: "",
-      title:"",
+      title: "",
     };
   },
   methods: {
@@ -98,7 +98,7 @@ export default {
         console.log(error);
       }
     },
-    async getsearchcourse(){
+    async getsearchcourse() {
       try {
         const response = await axios.get(`course/search?title=${this.title}`);
         console.log(response.data);
@@ -115,24 +115,25 @@ export default {
       console.log("HIt");
       router.push({ path: `/course/${course_id}/details` });
     },
-    getshowsearch(title){
-      console.log(title)
-      this.title = title
+    getshowsearch(title) {
+      console.log(title);
+      this.title = title;
     },
-    async selectCategory(category_id){
+    async selectCategory(category_id) {
       try {
-        console.log('sdf')
-        const response  = await axios.get(`/course/bycat?categoryId=${category_id}`)
+        console.log("sdf");
+        const response = await axios.get(
+          `/course/bycat?categoryId=${category_id}`
+        );
         console.log(response.data);
         console.log(category_id);
-        console.log('a;lsds;a')
+        console.log("a;lsds;a");
         this.courses = response.data.courses;
       } catch (error) {
         this.errorMsg = "Error retreving data";
         console.log(error);
       }
-      
-    }
+    },
   },
   components: {
     FindBar,
@@ -140,7 +141,7 @@ export default {
     AdvertBar,
     CourseCard,
   },
-}
+};
 </script>
 
 <style>
