@@ -4,8 +4,15 @@
       <div id="firstps">
         <img
           :src="userdata.image"
-          style="height: 7vw; width: 7vw; border-radius: 2.6vw"
+          style="height: 10vw; width: 10vw; border-radius: 2.6vw"
         />
+        <div>
+          <img
+            style="width: 20px; height: 20px"
+            @click="modalShow = true"
+            src="../assets/icons/pencil.png"
+          />
+        </div>
       </div>
       <div id="secondps">
         <h5>{{ userdata.username }}</h5>
@@ -45,6 +52,38 @@
         </div>
       </div>
     </div>
+
+    <div class="modal-cus" v-if="modalShow">
+      <div class="modal-content">
+        <h3>Edit profile picture</h3>
+        <input
+          type="file"
+          id="avatar"
+          name="avatar"
+          accept="image/png,image/jpeg"
+          placeholder="Upload Photo"
+          @change="onImageSelected"
+        />
+        <div class="row">
+          <button
+            @click="modalShow = false"
+            class="buttonc"
+            id="b1"
+            style="color: white; background-color: red"
+          >
+            <b>Cancel</b>
+          </button>
+          <button
+            class="buttonc"
+            id="b2"
+            @click="uploadProfilePic"
+            style="color: white; background-color: green"
+          >
+            <b>Save</b>
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 <script>
@@ -61,9 +100,28 @@ export default {
     return {
       userdata: {},
       courses: {},
+      modalShow: false,
+      uploadedImage: "",
     };
   },
   methods: {
+    onImageSelected(event) {
+      this.uploadedImage = event.target.files[0];
+    },
+    async uploadProfilePic() {
+      const fd = new FormData();
+      fd.append("picture", this.uploadedImage, this.uploadedImage.name);
+      try {
+        const response = await axios.put("user/profilePic", fd);
+        if (response.status == 200) {
+          console.log("Changed pciture");
+        } else {
+          console.log("failed");
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    },
     async getprofile() {
       try {
         const response = await axios.get("/user/");
@@ -116,5 +174,22 @@ export default {
 }
 #adps {
   margin-left: 3vw;
+}
+
+.modal-cus {
+  width: 50vw;
+  height: 30vh;
+  background-color: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  margin-left: 30vw;
+  margin-top: 30vh;
+  border: 1px solid black;
+  border-radius: 25px;
+}
+
+.modal-content {
+  margin: 2vh 3vw;
 }
 </style>
