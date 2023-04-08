@@ -1,7 +1,10 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <div>
-    <FindBar :getsearchs="getshowsearch" @click="getsearchcourse" />
+    <FindBar :getsearchs="getshowsearch" />
+    <button style="margin: 0; margin-left: 40vw" @click="getsearchcourse">
+      Search
+    </button>
     <AdvertismentBar />
     <div>
       <h2 class="cur">Search by catergories</h2>
@@ -21,6 +24,7 @@
           v-for="course in limitedenroll"
           :key="course._id"
           :courses="course"
+          @click="getshowcourse(course._id)"
         />
       </div>
       <div id="viewdiv">
@@ -52,6 +56,9 @@ import router from "../router/index";
 export default {
   name: "App",
   async created() {
+    setTimeout(() => {
+      this.$store.dispatch("setMsgandError");
+    }, 5000);
     this.getcourse(), this.getcategory();
     const response = await axios.get("/course/enrolled");
     console.log(response.data);

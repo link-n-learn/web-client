@@ -96,6 +96,11 @@ export default {
   created() {
     this.getprofile(), this.getusercourses();
   },
+  mounted() {
+    setTimeout(() => {
+      this.$store.dispatch("setMsgandError");
+    }, 5000);
+  },
   data() {
     return {
       userdata: {},
@@ -112,14 +117,10 @@ export default {
       const fd = new FormData();
       fd.append("picture", this.uploadedImage, this.uploadedImage.name);
       try {
-        const response = await axios.put("user/profilePic", fd);
-        if (response.status == 200) {
-          console.log("Changed pciture");
-        } else {
-          console.log("failed");
-        }
+        await axios.put("user/profilePic", fd);
+        this.$store.dispatch("setMsg", "Profile picture has been updated.");
       } catch (err) {
-        console.log(err);
+        this.$store.dispatch("setError", "Something went wrong");
       }
     },
     async getprofile() {

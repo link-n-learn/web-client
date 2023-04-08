@@ -126,13 +126,12 @@ export default {
       }
     },
     async rateCourse(rate) {
-      const response = await axios.patch(
-        `course/${this.foundCourse._id}/rate?rate=${rate}`
-      );
-      if (response.status == 200) {
-        console.log("rated the course");
-      } else {
-        console.log("Not able to rate");
+      try {
+        await axios.patch(`course/${this.foundCourse._id}/rate?rate=${rate}`);
+        this.$store.dispatch("setMsg", "Thankyou for the rating");
+      } catch (err) {
+        console.log(err);
+        this.$store.dispatch("setError", "You have already rated this course");
       }
     },
   },

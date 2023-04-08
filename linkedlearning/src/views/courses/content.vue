@@ -68,7 +68,6 @@
           </div>
         </div>
 
-
         <div class="row" id="sixthc">
           <button
             @click="addLecture('video', section._id)"
@@ -100,24 +99,24 @@
       <div class="modal-content">
         <h3>Lecture details</h3>
         <input
-            type="text"
-            id="section-titlec"
-            v-model="addContent.title"
-            placeholder="Enter lecture title"
-          />
-      <input
-            type="text"
-            id="section-titlec"
-            v-model="addContent.link"
-            placeholder="Enter the link"
-          />
-          
-          <div class="row">
+          type="text"
+          id="section-titlec"
+          v-model="addContent.title"
+          placeholder="Enter lecture title"
+        />
+        <input
+          type="text"
+          id="section-titlec"
+          v-model="addContent.link"
+          placeholder="Enter the link"
+        />
+
+        <div class="row">
           <button
             @click="addContent.modalShow = false"
             class="buttonc"
             id="b1"
-            style="color : white;background-color: red;"
+            style="color: white; background-color: red"
           >
             <b>Cancel</b>
           </button>
@@ -125,16 +124,13 @@
             class="buttonc"
             id="b2"
             @click="addLectureInCourse()"
-            style="color : white;background-color: green;"
+            style="color: white; background-color: green"
           >
             <b>Save</b>
           </button>
         </div>
       </div>
-      
     </div>
-    
-
   </div>
 </template>
 
@@ -147,12 +143,12 @@ export default {
   computed: mapGetters(["getcourseId"]),
   data() {
     return {
-      addContent:{
-        modalShow : false,
-        link : "some link",
-        linkType:"",
-        sectionId : "",
-        title : ""
+      addContent: {
+        modalShow: false,
+        link: "some link",
+        linkType: "",
+        sectionId: "",
+        title: "",
       },
       courseContent: [
         {
@@ -212,7 +208,7 @@ export default {
       const newId = ObjectID(Date.now()).toHexString();
       for (i = 0; i < this.courseContent.length; i++) {
         if (this.courseContent[i]._id == section_id) {
-          this.courseContent.splice(i+1, 0, {
+          this.courseContent.splice(i + 1, 0, {
             title: "",
             _id: newId,
             secContent: [],
@@ -221,30 +217,36 @@ export default {
         }
       }
     },
-    async SaveButton(){
-      const response = await axios.patch(`/course/${this.getcourseId}/content` , {content : this.courseContent});
+    async SaveButton() {
+      const response = await axios.patch(
+        `/course/${this.getcourseId}/content`,
+        { content: this.courseContent }
+      );
       console.log(response);
     },
-    addLecture(type , sectionId){
+    addLecture(type, sectionId) {
       this.addContent.modalShow = true;
       this.addContent.linkType = type;
-      this.addContent.sectionId = sectionId
+      this.addContent.sectionId = sectionId;
     },
-    addLectureInCourse(){
-      this.courseContent.forEach(section=>{
-        if(section._id == this.addContent.sectionId){
+    addLectureInCourse() {
+      this.courseContent.forEach((section) => {
+        if (section._id == this.addContent.sectionId) {
           section.secContent.push({
-            title : this.addContent.title,
-            link : this.addContent.link,
-            resourceType : this.addContent.linkType,
-            _id : ObjectID(Date.now()).toHexString()
-          })
+            title: this.addContent.title,
+            link: this.addContent.link,
+            resourceType: this.addContent.linkType,
+            _id: ObjectID(Date.now()).toHexString(),
+          });
         }
-      })
-      this.addContent.modalShow = false
-    }
+      });
+      this.addContent.modalShow = false;
+    },
   },
   async mounted() {
+    setTimeout(() => {
+      this.$store.dispatch("setMsgandError");
+    }, 5000);
     this.$store.dispatch("syncCourseIdLocalStorage");
     try {
       const response = await axios.get(`course/${this.getcourseId}/content`);
@@ -389,21 +391,20 @@ export default {
   cursor: pointer;
 }
 
-.modal-cus{
+.modal-cus {
   width: 50vw;
-  height : 30vh;
+  height: 30vh;
   background-color: white;
-  position :fixed;
-  top : 0;
-  left : 0;
+  position: fixed;
+  top: 0;
+  left: 0;
   margin-left: 30vw;
   margin-top: 30vh;
   border: 1px solid black;
   border-radius: 25px;
 }
 
-.modal-content{
-  margin : 2vh 3vw;
+.modal-content {
+  margin: 2vh 3vw;
 }
-
 </style>

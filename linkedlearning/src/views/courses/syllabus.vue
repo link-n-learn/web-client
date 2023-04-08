@@ -17,7 +17,9 @@
   <div class="row" id="second">
     <div class="column" id="syllabus"><h4>Syllabus</h4></div>
     <!-- <div class="column" id="empty"></div> -->
-    <div class="column" id="save"><button id="saveb" @click.prevent="SaveButton">save</button></div>
+    <div class="column" id="save">
+      <button id="saveb" @click.prevent="SaveButton">save</button>
+    </div>
   </div>
   <div v-for="data in information" :key="data.title" id="MainContainer">
     <div class="row" id="third">
@@ -30,7 +32,9 @@
           v-model="data.title"
         />
       </div>
-      <div class="column" id="dustbin"><img src="../../assets/icons/delete.png" @click="DeleteButton(data)" /></div>
+      <div class="column" id="dustbin">
+        <img src="../../assets/icons/delete.png" @click="DeleteButton(data)" />
+      </div>
     </div>
     <div class="row" id="fourth">
       <input
@@ -66,6 +70,11 @@ export default {
     };
   },
   computed: mapGetters(["getcourseId"]),
+  mounted() {
+    setTimeout(() => {
+      this.$store.dispatch("setMsgandError");
+    }, 5000);
+  },
   methods: {
     syllabusPage() {
       router.push({ name: "syllabus" });
@@ -78,11 +87,11 @@ export default {
     },
     addButton() {
       const newData = {
-        title : "",
-        subTopics : "",
-      }
-      this.information.push(newData)
-    },  
+        title: "",
+        subTopics: "",
+      };
+      this.information.push(newData);
+    },
     DeleteButton(data) {
       const index = this.information.indexOf(data);
       console.log(index);
@@ -91,14 +100,17 @@ export default {
     async SaveButton() {
       console.log("On CLicking Save Button!");
       console.log(this.information);
-      try{
+      try {
         const syllabus = {
-          syllabus : this.information
-        }
-        const response = await axios.patch(`course/${this.getcourseId}/syllabus`, syllabus);
+          syllabus: this.information,
+        };
+        const response = await axios.patch(
+          `course/${this.getcourseId}/syllabus`,
+          syllabus
+        );
         console.log(response);
-        this.$store.dispatch("setMsg", response.data.msg);  
-      }catch(err){
+        this.$store.dispatch("setMsg", response.data.msg);
+      } catch (err) {
         console.log("Error on Clicking Save Button");
         console.log(err);
       }
@@ -109,13 +121,13 @@ export default {
     try {
       const response = await axios.get(`course/${this.getcourseId}/syllabus`);
       this.information = response.data.syllabus;
-      if(this.information.length == 0){
+      if (this.information.length == 0) {
         this.information = [
           {
-            title : "",
-            subTopics : "",
+            title: "",
+            subTopics: "",
           },
-        ]
+        ];
       }
       console.log(this.information);
       console.log(this.getcourseId);
@@ -137,7 +149,7 @@ export default {
 .container {
   margin-right: 0;
 }
-#MainContainer{
+#MainContainer {
   margin-top: -8rem;
 }
 #first {

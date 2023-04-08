@@ -117,5 +117,26 @@ export default {
   color: rgb(199, 199, 199);
 }
 
+.error-msg {
+  width: 25%;
+  text-align: center;
+  margin: auto;
+  margin-top: 2vh;
+  background: #f7b2b2;
+  border: none;
+  border-radius: 10px;
+  padding: 2vh 2vw;
+}
+.success-msg {
+  width: 25%;
+  text-align: center;
+  margin: auto;
+  margin-top: 2vh;
+  background: #b2f7b2;
+  border: none;
+  border-radius: 10px;
+  padding: 2vh 2vw;
+}
+
 @import "~bootstrap/dist/css/bootstrap.css";
 </style>

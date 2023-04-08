@@ -30,8 +30,20 @@
       <div class="form-floating">
         <div class="col-6 offset-3">
           <p class="text-center">Enter OTP</p>
-          <input id="username" class="form-control" placeholder="OTP" v-model="verifyDetails.otp" required />
-          <button @click.prevent="resendOtp" id="resend-btn" v-bind:disabled="pausedForAMinute">Resend OTP</button>
+          <input
+            id="username"
+            class="form-control"
+            placeholder="OTP"
+            v-model="verifyDetails.otp"
+            required
+          />
+          <button
+            @click.prevent="resendOtp"
+            id="resend-btn"
+            v-bind:disabled="pausedForAMinute"
+          >
+            Resend OTP
+          </button>
         </div>
         <div class="col-6 offset-3 justify-content-center">
           <button id="button"><h6>Submit</h6></button>
@@ -55,6 +67,11 @@ export default {
       },
       pausedForAMinute: false,
     };
+  },
+  mounted() {
+    setTimeout(() => {
+      this.$store.dispatch("setMsgandError");
+    }, 5000);
   },
   methods: {
     async verify() {
@@ -95,21 +112,21 @@ export default {
 #box {
   padding: 15px;
 }
-#button{
-  background-color:#212121;
-  border:1px solid black;
-  border-radius:3px;
-  color:white;
+#button {
+  background-color: #212121;
+  border: 1px solid black;
+  border-radius: 3px;
+  color: white;
 }
-#image{
+#image {
   height: 25vh;
   width: 25vh;
 }
-#resend-btn{
+#resend-btn {
   background-color: white;
   color: #127ebd;
   border: none;
-  padding: 2vh 0
+  padding: 2vh 0;
 }
 @import "~bootstrap/dist/css/bootstrap.css";
 </style>

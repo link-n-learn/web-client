@@ -24,6 +24,9 @@ import { mapGetters } from "vuex";
 export default {
   computed: mapGetters(["getfoundCourse"]),
   async created() {
+    setTimeout(() => {
+      this.$store.dispatch("setMsgandError");
+    }, 5000);
     // await store.dispatch("syncfoundCourseLocalStorage");
     this.course_id = this.$route.params.course_id;
     const response = await axios.get(`course/details/${this.course_id}`);

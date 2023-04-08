@@ -114,6 +114,9 @@ export default {
     this.courseCategory = information.data.categories;
   },
   async mounted() {
+    setTimeout(() => {
+      this.$store.dispatch("setMsgandError");
+    }, 8000);
     const response = await axios.get(`course/details/${this.getcourseId}`);
     this.courseDetails.title = response.data.foundCourse.title;
     this.courseDetails.description = response.data.foundCourse.descp;
@@ -140,7 +143,7 @@ export default {
         });
 
         if (response.status == 200) {
-          console.log("Edited course");
+          this.$store.dispatch("setMsg", "Edited course");
         } else {
           console.log("failed");
         }

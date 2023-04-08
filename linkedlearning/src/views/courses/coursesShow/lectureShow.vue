@@ -45,6 +45,9 @@ export default {
   },
   mounted() {
     // Get the video ID from the original URL
+    setTimeout(() => {
+      this.$store.dispatch("setMsgandError");
+    }, 5000);
     const videoId = this.videoUrl.split("/").pop();
     console.log("Found Course");
     console.log(this.getfoundCourse);
