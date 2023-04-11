@@ -6,7 +6,7 @@
       </div>
       <div class="column" id="maincdstar">
         <div class="row" id="box">
-          <div class="rating">
+          <div class="rating" style="margin-top: 12vh">
             <img
               class="stars"
               src="../../src/assets/icons/goldstar.png"
@@ -20,7 +20,7 @@
               :key="i"
             />
           </div>
-          <div class="row" id="review">
+          <div class="row" id="review" style="margin-top: 2vh">
             <small>{{ ratingLen }} ratings </small>
           </div>
           <div class="row" id="enrollcd">
@@ -139,8 +139,15 @@ export default {
 </script>
 
 <style scoped>
+h5 {
+  margin-top: 4vh;
+  margin-left: 1vw;
+}
 a {
-  color: rgb(48, 48, 48);
+  color: rgb(48, 48, 48) !important;
+}
+p {
+  font-size: 1.1rem;
 }
 #correct {
   background-color: rgb(57, 231, 57);

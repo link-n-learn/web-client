@@ -6,8 +6,10 @@
 
   <div class="row" id="first">
     <div id="d" class="col-md-4" @click="detailsPage">Details</div>
-    <div id="s" class="col-md-4" @click="syllabusPage">Syllabus</div>
-    <div id="c" class="col-md-4">Content</div>
+    <div id="syl" class="col-md-4" @click="syllabusPage">Syllabus</div>
+    <div id="c" class="col-md-4">
+      <router-link to="/content">Content</router-link>
+    </div>
 
     <!-- <a href="#"><div id="d" class="col-md-4">Details</div></a>
       <a href="#"><div id="s" class="col-md-4">Syllabus</div></a>
@@ -21,7 +23,7 @@
       <button id="saveb" @click.prevent="SaveButton">save</button>
     </div>
   </div>
-  <div v-for="data in information" :key="data.title" id="MainContainer">
+  <div v-for="data in information" :key="data.key" id="MainContainer">
     <div class="row" id="third">
       <div class="column" id="inti">
         <input
@@ -52,6 +54,11 @@
   <div class="row" id="sixth">
     <button id="AddButton" @click.prevent="addButton"><b>+Add</b></button>
   </div>
+
+  <div id="nav-buttons">
+    <button><router-link to="/details">Previous</router-link></button>
+    <button><router-link to="/content">Next</router-link></button>
+  </div>
 </template>
 
 <script>
@@ -65,6 +72,7 @@ export default {
         {
           title: "",
           subTopics: "",
+          key: 0,
         },
       ],
     };
@@ -89,6 +97,7 @@ export default {
       const newData = {
         title: "",
         subTopics: "",
+        key: this.information.length - 1,
       };
       this.information.push(newData);
     },
@@ -111,7 +120,10 @@ export default {
         console.log(response);
         this.$store.dispatch("setMsg", response.data.msg);
       } catch (err) {
-        console.log("Error on Clicking Save Button");
+        this.$store.dispatch(
+          "setError",
+          "Something went wrong. If the problem persists, contact us"
+        );
         console.log(err);
       }
     },
@@ -140,6 +152,10 @@ export default {
 </script>
 
 <style>
+#nav-buttons {
+  text-align: center;
+  margin-top: -10vh;
+}
 .heading {
   text-align: center;
   justify-content: center;
@@ -182,11 +198,11 @@ export default {
   color: white;
   box-shadow: 0px 2px #80808099;
 }
-#s {
+#syl {
   border-right: 0;
   border-left: 0;
-  background-color: #8000ff;
-  color: white;
+  background-color: #8000ff !important;
+  color: white !important;
   border-top: 1px #80808099 solid;
   box-shadow: 0px 2px #80808099;
 }
@@ -194,7 +210,8 @@ export default {
   border-left: 0rem;
   border-top-right-radius: 1rem;
   border-bottom-right-radius: 1rem;
-  background-color: #8000ff;
+  background-color: #efe0fd;
+  color: black !important;
   border-top: 1px #80808099 solid;
   box-shadow: 0px 2px #80808099;
 }
@@ -234,11 +251,11 @@ export default {
   border: 0;
 }
 #third {
-  /* width: 100vw;
+  width: 100vw;
   max-width: 100%;
   justify-content: left;
-  margin: 2vw 12vw; */
-  margin-top: -2rem;
+  margin: 2vw 12vw;
+  margin-top: 1rem;
   padding-top: -5rem;
   margin: 2vw 1vw;
   max-width: 100%;
@@ -261,12 +278,14 @@ export default {
   height: 1vw;
   justify-content: left;
   margin: 2vw 1vw;
-  margin-top: -2vh;
+  /* margin-top: vh; */
 }
 #topic {
   height: 5vw;
   width: 78vw;
-  margin-top: -12rem;
+  margin-top: -11.5rem;
+  margin-bottom: 2vh;
+  margin-left: 2vw;
   box-shadow: 1px 4px 3px 3px #80808099;
   border-radius: 0.7rem;
   background-color: #d1cbcb4d;
@@ -303,7 +322,7 @@ a:hover {
   color: white;
 }
 a {
-  color: black;
+  color: white;
 }
 button {
   background-color: #80808099;

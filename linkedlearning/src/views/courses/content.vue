@@ -1,9 +1,9 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-  <div class="container">
+  <div>
     <div class="heading">
       <div class="coursec"><h3>Create a course</h3></div>
-      <div class="row" id="firstc">
+      <div class="row" id="first">
         <div class="column" id="detailc">Details</div>
         <div class="column" id="syllabusc">Syllabus</div>
         <div class="column" id="contentc">Content</div>
@@ -131,6 +131,9 @@
         </div>
       </div>
     </div>
+    <div id="nav-buttons">
+      <button><router-link to="/syllabusPage">Previous</router-link></button>
+    </div>
   </div>
 </template>
 
@@ -222,7 +225,14 @@ export default {
         `/course/${this.getcourseId}/content`,
         { content: this.courseContent }
       );
-      console.log(response);
+      if (response.status == 200) {
+        this.$store.dispatch("setMsg", "Content saved");
+      } else {
+        this.$store.dispatch(
+          "setError",
+          "Something went wrong. If the problem persists, contact us"
+        );
+      }
     },
     addLecture(type, sectionId) {
       this.addContent.modalShow = true;
@@ -262,10 +272,12 @@ export default {
 </script>
 
 <style>
-#container {
+#header-content {
+  margin-left: 5vw;
+}
+.container {
   justify-content: center;
   align-items: center;
-  margin-left: 5vw;
 }
 #detailc {
   border-right: 0rem;
@@ -296,7 +308,7 @@ export default {
 }
 #addc {
   margin-top: 2vw;
-  margin-left: 2vw;
+  margin-left: 8vw;
 }
 #section-titlec {
   width: 75%;
@@ -319,6 +331,7 @@ export default {
 #secondc {
   border: 1px solid grey;
   width: 75vw;
+  margin-left: 5vw;
   box-shadow: 0px 0px 3px 3px#80808099;
   background-color: #d1cbcb4d;
   border-radius: 2vw;
@@ -373,6 +386,7 @@ export default {
 #heading {
   justify-content: center;
   align-items: center;
+  text-align: center;
 }
 
 #savebtn {

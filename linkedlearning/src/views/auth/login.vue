@@ -1,9 +1,8 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-  <div class="container">
-    <img src="../../assets/linked_learning_image.png" id="image" />
-
+  <div>
     <div class="form-border">
+      <img src="../../assets/linked_learning_image.png" id="image" />
       <h2>Login</h2>
       <form @submit.prevent="login">
         <div class="form-floating">
@@ -105,14 +104,24 @@ export default {
   margin: 2vh;
 }
 .form-border {
-  margin-left: 15vw;
+  text-align: center;
+  margin-left: 8vw;
   margin-right: 15vw;
   margin-top: 2vh;
+  width: 70vw;
   padding: 1vh 0;
 }
 
 .form-control {
   padding: 0.5vh 0;
+}
+
+p {
+  font-size: 1.2rem;
+  margin-top: 1vh;
+}
+a:hover {
+  color: #212121 !important;
 }
 @import "~bootstrap/dist/css/bootstrap.css";
 </style>

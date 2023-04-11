@@ -48,7 +48,6 @@
       </div>
     </div>
   </div>
-  <div class="column" id="addsq"></div>
 </template>
 
 <script>
@@ -161,15 +160,6 @@ export default {
   align-items: left;
   margin: 2vw 0vw;
 }
-#addsq {
-  border: 0;
-  height: 90vh;
-  width: 25vw;
-  margin-left: 47vw;
-  margin-top: -42vw;
-  box-shadow: 4px 2px 4px 2px #80808099;
-  background-color: #d1cbcb4d;
-  border-radius: 0.5vw;
-}
+
 @import "~bootstrap/dist/css/bootstrap.css";
 </style>

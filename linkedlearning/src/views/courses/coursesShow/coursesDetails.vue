@@ -4,6 +4,8 @@
       <CourseHead />
     </div>
 
+    <h2 style="text-align: center; margin: 5vh">Syllabus</h2>
+
     <ul
       v-for="sectionSyllabus in foundCourse.syllabus"
       :key="sectionSyllabus._id"
@@ -75,5 +77,6 @@ ul {
 li {
   list-style-type: disc;
   margin: 0vw 3vw;
+  font-size: 1.2rem;
 }
 </style>

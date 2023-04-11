@@ -1,8 +1,8 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-  <img src="../../assets/linked_learning_image.png" id="image" />
-  <h2>Signup</h2>
   <div class="form-border">
+    <img src="../../assets/linked_learning_image.png" id="image" />
+    <h2>Signup</h2>
     <form @submit.prevent="createNewAccount">
       <div class="form-floating">
         <div class="col-6 offset-3">
@@ -135,6 +135,9 @@ export default {
 .form-control {
   padding-top: 0.5vh 0;
   padding-bottom: 1vh;
+}
+#agree_i {
+  font-size: 1rem;
 }
 #image {
   height: 25vh;

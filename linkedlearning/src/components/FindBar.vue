@@ -31,7 +31,8 @@ export default {
   margin: 1vw 0vw;
 }
 #searchdh {
-  height: 2vw;
+  height: 3vw;
+  padding: 0 1vw;
   width: 30vw;
   border-radius: 0.6vw;
   box-shadow: 2px 2px 2px 2px #80808099;

@@ -3,31 +3,25 @@
   <div>
     <CourseHead />
   </div>
-  <div
-    class="container"
-    id="lectures"
-    v-for="i in getfoundCourse.content"
-    :key="i"
-  >
+  <div id="lectures" v-for="i in getfoundCourse.content" :key="i">
     <h2>{{ i.title }}</h2>
     <div class="row" id="MainCard" v-for="item in i.secContent" :key="item">
-      <div class="col" id="card1" v-if="item.resourceType == 'video'">
+      <div class="col-1" id="card1" v-if="item.resourceType == 'video'">
         <img src="../../../assets/icons/youtube.png" />
       </div>
-      <div class="col" id="card1" v-if="item.resourceType == 'article'">
+      <div class="col-1" id="card1" v-if="item.resourceType == 'article'">
         <img src="../../../assets/icons/article.png" />
       </div>
-      <div class="col-6 text-center" v-if="item.resourceType == 'video'">
+      <div class="col-11" v-if="item.resourceType == 'video'">
         <router-link
           :to="`/course/` + getfoundCourse._id + `/lecture/` + item._id"
           id="link"
           >{{ item.title }}</router-link
         >
       </div>
-      <div class="col-6 text-center" v-if="item.resourceType == 'article'">
+      <div class="col-11" v-if="item.resourceType == 'article'">
         <a :href="item.link">{{ item.title }}</a>
       </div>
-      <div class="col text-end" id="card2"></div>
     </div>
   </div>
   <router-view />
@@ -63,8 +57,12 @@ export default {
 </script>
 
 <style scoped>
-#lectures {
-  padding-top: 2.5rem;
+/* #lectures {
+  text-align: left;
+} */
+a {
+  color: black !important;
+  font-size: 1.2rem;
 }
 #MainCard {
   box-shadow: 4px 2px 4px 2px #80808099;
@@ -78,10 +76,17 @@ export default {
 #card1 {
   padding-left: 2rem;
 }
+h2 {
+  margin-top: 8vh;
+}
 #card2 {
   padding-right: 2rem;
 }
 #link {
   color: black;
+}
+
+img {
+  margin-top: -7px;
 }
 </style>

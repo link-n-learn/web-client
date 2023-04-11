@@ -38,7 +38,9 @@
           <h4>Courses created</h4>
         </div>
         <div class="column" style="width: 10vw; border: 0; margin-left: 50vw">
-          <button id="addnewcourse" style="width: 8vw">New Course</button>
+          <button id="addnewcourse" style="width: 8vw">
+            <router-link to="/details">New Course</router-link>
+          </button>
         </div>
         <div class="row" id="cards">
           <CourseCard
@@ -192,5 +194,14 @@ export default {
 
 .modal-content {
   margin: 2vh 3vw;
+}
+
+a {
+  color: white !important;
+  text-decoration: none;
+}
+
+a:hover {
+  color: white !important;
 }
 </style>

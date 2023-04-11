@@ -7,10 +7,6 @@
     <div id="d" class="col-md-4" @click="detailsPage">Details</div>
     <div id="s" class="col-md-4" @click="syllabusPage">Syllabus</div>
     <div id="c" class="col-md-4" @click="contentPage">Content</div>
-
-    <!-- <a href="#"><div id="d" class="col-md-4">Details</div></a>
-      <a href="#"><div id="s" class="col-md-4">Syllabus</div></a>
-      <a href="#"><div  id="c" class="col-md-4">Content</div></a> -->
   </div>
   <div id="cd" class="text-center"><h4>Course Details</h4></div>
   <div class="row" id="second">
@@ -70,7 +66,7 @@
   <div id="fifth">
     <button class="prev">Previous</button>
     <button @click="creatingCourse()">Save</button>
-    <button>Next</button>
+    <button><router-link to="/syllabusPage">Next</router-link></button>
   </div>
 </template>
 
@@ -96,7 +92,7 @@ export default {
       },
       active: false,
       selectedImage: "",
-      responseCourseId: "",
+      responseCourseId: "invalidId",
     };
   },
   computed: mapGetters([
@@ -118,9 +114,11 @@ export default {
       this.$store.dispatch("setMsgandError");
     }, 8000);
     const response = await axios.get(`course/details/${this.getcourseId}`);
-    this.courseDetails.title = response.data.foundCourse.title;
-    this.courseDetails.description = response.data.foundCourse.descp;
-    this.responseCourseId = response.data.foundCourse._id;
+    if (response.status == 200) {
+      this.courseDetails.title = response.data.foundCourse.title;
+      this.courseDetails.description = response.data.foundCourse.descp;
+      this.responseCourseId = response.data.foundCourse._id;
+    }
   },
   methods: {
     selectedCourses(_id, title) {
@@ -129,14 +127,15 @@ export default {
       this.courseCategory._id = _id;
       this.courseCategory.title = title;
       // console.log("Course Information");
-      // console.log(this.courseCategory._id);
-      // console.log(this.courseCategory.title);
+      console.log(this.courseCategory._id);
+      console.log(this.courseCategory.title);
       // console.log(this.courseDetails.title);
       // console.log(this.courseDetails.description);
     },
     async creatingCourse() {
       if (this.getcourseId == this.responseCourseId) {
         //update course
+        console.log(this.getcourseId, this.responseCourseId);
         const response = await axios.put(`course/details/${this.getcourseId}`, {
           title: this.courseDetails.title,
           descp: this.courseDetails.description,
@@ -145,7 +144,7 @@ export default {
         if (response.status == 200) {
           this.$store.dispatch("setMsg", "Edited course");
         } else {
-          console.log("failed");
+          this.$store.dispatch("setError", "Failed to Edit course");
         }
       } else {
         const courseInformation = {
@@ -238,8 +237,8 @@ export default {
 #s {
   border-right: 0;
   border-left: 0;
-  background-color: #8000ff;
-  color: white;
+  background-color: #efe0fd !important;
+  color: black !important;
   border-top: 1px #80808099 solid;
   box-shadow: 0px 2px #80808099;
 }
@@ -247,8 +246,8 @@ export default {
   border-left: 0rem;
   border-top-right-radius: 1rem;
   border-bottom-right-radius: 1rem;
-  background-color: #8000ff;
-  color: white;
+  background-color: #efe0fd;
+  color: black;
   border-top: 1px #80808099 solid;
   box-shadow: 0px 2px #80808099;
 }
@@ -350,10 +349,12 @@ button {
   margin: 10vh 10vw;
 }
 #s:hover {
-  background-color: #8000ff;
+  background-color: #8000ff !important;
+  color: white !important;
 }
 #c:hover {
   background-color: #8000ff;
+  color: white;
 }
 
 a:hover {

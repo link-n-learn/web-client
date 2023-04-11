@@ -79,7 +79,7 @@ export default {
   margin-right: 0vw;
 }
 .card {
-  width: 19.8vw;
+  width: 23vw;
   box-shadow: 2px 2px 3px 3px grey;
   margin: 2vw 0vw;
   border-radius: 0.7vw;
@@ -91,7 +91,7 @@ export default {
   transition: all 1s ease;
 }
 .card-img-top {
-  width: 20vw;
+  width: 23vw;
   height: 13vw;
   border-radius: 0.6vw;
   padding: 0.5vw 0.5vw;
@@ -126,7 +126,7 @@ export default {
 #course-creator {
   border: 0;
   margin-bottom: 0vw;
-  margin: 1vw 0vw;
+  margin: 1vw 1vw;
   width: 9vw;
 }
 #logod {

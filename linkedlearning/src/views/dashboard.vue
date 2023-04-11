@@ -12,6 +12,7 @@
         v-for="category in categories"
         :key="category._id"
         @click="selectCategory(category._id)"
+        class="category-text"
       >
         <b class="select-category">{{ category.title }}</b>
       </span>
@@ -40,6 +41,16 @@
           @click="getshowcourse(course._id)"
         >
         </CourseCard>
+        <!-- <span
+          v-for="i in courses.length"
+          :key="courses[i]._id"
+          @click="getshowcourse(courses[i]._id)"
+        >
+          <CourseCard :courses="courses[i]"> </CourseCard>
+          <div v-if="i % 9 == 0">
+            <AdvertBar></AdvertBar>
+          </div>
+        </span> -->
       </div>
     </div>
   </div>
@@ -152,6 +163,9 @@ export default {
 </script>
 
 <style>
+.category-text:hover {
+  cursor: pointer;
+}
 .select-category {
   margin: 2vw 2vw;
 }
