@@ -19,13 +19,13 @@
     <div class="row">
       <div class="col"></div>
       <div class="col">
-        <img src="../../assets/linked_learning_image.png" id="image" />
+        <img src="../../assets/Linkedlearning.jpg" id="image" />
         <h2>Verify email</h2>
       </div>
       <div class="col"></div>
     </div>
   </div>
-  <div class="container">
+  <div>
     <form @submit.prevent="verify">
       <div class="form-floating">
         <div class="col-6 offset-3">

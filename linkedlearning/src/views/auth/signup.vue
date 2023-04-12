@@ -1,7 +1,7 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <div class="form-border">
-    <img src="../../assets/linked_learning_image.png" id="image" />
+    <img src="../../assets/Linkedlearning.jpg" id="image" />
     <h2>Signup</h2>
     <form @submit.prevent="createNewAccount">
       <div class="form-floating">

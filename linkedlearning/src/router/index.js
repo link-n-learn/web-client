@@ -16,7 +16,7 @@ import discussionShow from '../views/courses/coursesShow/discussionShow.vue';
 import newQuestion from '../views/courses/discussionCourse/newQuestion.vue';
 import showQuestion from '../views/courses/discussionCourse/showQuestion.vue';
 import videoLecture from '../views/courses/coursesShow/videoLecture.vue';
-import landingPage from "../views/auth/landingPage"
+import landingPage from "../views/landingPage"
 
 const routes = [
   {

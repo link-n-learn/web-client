@@ -43,7 +43,7 @@
         </ul>
       </div>
     </nav>
-    <div style="margin-left: 10vw">
+    <div>
       <div v-show="this.getError.length > 0" class="error-msg">
         {{ this.getError }}
         <span @click="clearMsg"
@@ -60,7 +60,9 @@
             src="./assets/icons/close.png"
         /></span>
       </div>
-      <router-view />
+      <div id="wrapper-views">
+        <router-view />
+      </div>
     </div>
   </div>
 
@@ -116,6 +118,10 @@ export default {
 </script>
 
 <style>
+#wrapper-views {
+  margin: 0 8vw;
+  /* width: 80vw; */
+}
 .bg-light {
   background-color: #212121 !important;
   color: white !important;
