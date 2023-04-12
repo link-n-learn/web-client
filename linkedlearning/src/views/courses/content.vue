@@ -3,6 +3,9 @@
   <div>
     <div class="heading">
       <div class="coursec"><h3>Create a course</h3></div>
+      <div class="alert alert-warning" role="alert">
+        Ensure you click on save before proceeding to the next step
+      </div>
       <div class="row" id="first">
         <div class="column" id="detailc">Details</div>
         <div class="column" id="syllabusc">Syllabus</div>

@@ -106,7 +106,6 @@ export default {
   margin: 2vw 0vw;
 }
 #first-text {
-  height: 4vw;
   justify-content: left;
   text-align: left;
   margin: 0.3vw 0vw;

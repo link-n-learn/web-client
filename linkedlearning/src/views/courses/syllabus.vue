@@ -3,7 +3,9 @@
   <div class="heading">
     <h3>Create a course</h3>
   </div>
-
+  <div class="alert alert-warning" role="alert">
+    Ensure you click on save before proceeding to the next step
+  </div>
   <div class="row" id="first">
     <div id="d" class="col-md-4" @click="detailsPage">Details</div>
     <div id="syl" class="col-md-4" @click="syllabusPage">Syllabus</div>
@@ -47,11 +49,11 @@
         v-model="data.subTopics"
       />
     </div>
-    <div class="row" id="fifthk">
+    <!-- <div class="row" id="fifthk">
       <div id="line"></div>
-    </div>
+    </div> -->
   </div>
-  <div class="row" id="sixth">
+  <div class="row" id="sixthc">
     <button id="AddButton" @click.prevent="addButton"><b>+Add</b></button>
   </div>
 
@@ -302,10 +304,10 @@ export default {
   margin-top: -8rem;
   border: 0.1px solid grey;
 }
-#sixth {
+#sixthc {
   width: 8vw;
   justify-content: center;
-  margin: -8vw 0vw;
+  /* margin: -8vw 0vw; */
 }
 button {
   margin: 0vw 10vw;

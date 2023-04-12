@@ -38,8 +38,12 @@
           <h4>Courses created</h4>
         </div>
         <div class="column" style="width: 10vw; border: 0; margin-left: 50vw">
-          <button id="addnewcourse" style="width: 8vw">
-            <router-link to="/details">New Course</router-link>
+          <button
+            @click="navigateToNewCourse"
+            id="addnewcourse"
+            style="width: 8vw"
+          >
+            New Course
           </button>
         </div>
         <div class="row" id="cards">
@@ -112,6 +116,11 @@ export default {
     };
   },
   methods: {
+    navigateToNewCourse() {
+      this.$store.dispatch("setcourseId", "");
+      this.$store.dispatch("syncCourseIdLocalStorage");
+      router.push("/details");
+    },
     onImageSelected(event) {
       this.uploadedImage = event.target.files[0];
     },

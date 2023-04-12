@@ -255,7 +255,8 @@ h2 {
   text-align: left;
   align-items: left;
   width: 50vw;
-  margin: 2vw 1vw;
+  height: fit-content;
+  margin: 0 1vw;
   border: 0vw;
 }
 button {
