@@ -11,7 +11,7 @@
       <span
         v-for="category in categories"
         :key="category._id"
-        @click="selectCategory(category._id)"
+        @click="selectCategory(category._id, category.title)"
         class="category-text"
       >
         <b class="select-category">{{ category.title }}</b>
@@ -117,14 +117,15 @@ export default {
       }
     },
     async getsearchcourse() {
-      try {
-        const response = await axios.get(`course/search?title=${this.title}`);
-        console.log(response.data);
-        this.courses = response.data.courses;
-      } catch (error) {
-        this.errorMsg = "Error retreving data";
-        console.log(error);
-      }
+      // try {
+      //   const response = await axios.get(`course/search?title=${this.title}`);
+      //   console.log(response.data);
+      //   this.courses = response.data.courses;
+      // } catch (error) {
+      //   this.errorMsg = "Error retreving data";
+      //   console.log(error);
+      // }
+      router.push(`/searchCourse?searchText=${this.title}`);
     },
     viewallpage() {
       router.push({ name: "viewEnroll" });
@@ -137,20 +138,23 @@ export default {
       console.log(title);
       this.title = title;
     },
-    async selectCategory(category_id) {
-      try {
-        console.log("sdf");
-        const response = await axios.get(
-          `/course/bycat?categoryId=${category_id}`
-        );
-        console.log(response.data);
-        console.log(category_id);
-        console.log("a;lsds;a");
-        this.courses = response.data.courses;
-      } catch (error) {
-        this.errorMsg = "Error retreving data";
-        console.log(error);
-      }
+    async selectCategory(category_id, catTitle) {
+      // try {
+      //   console.log("sdf");
+      //   const response = await axios.get(
+      //     `/course/bycat?categoryId=${category_id}`
+      //   );
+      //   console.log(response.data);
+      //   console.log(category_id);
+      //   console.log("a;lsds;a");
+      //   this.courses = response.data.courses;
+      // } catch (error) {
+      //   this.errorMsg = "Error retreving data";
+      //   console.log(error);
+      // }
+      router.push(
+        `/searchCourse?categoryId=${category_id}&categoryTitle=${catTitle}`
+      );
     },
   },
   components: {

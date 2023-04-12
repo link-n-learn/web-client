@@ -35,21 +35,21 @@
       </div>
     </div>
 
-    <div class="rate-in">
+    <!-- <div class="rate-in">
       <h5>Rate the course</h5>
       <button @click="rateCourse(5)" class="rate-btn">5</button>
       <button @click="rateCourse(4)" class="rate-btn">4</button>
       <button @click="rateCourse(3)" class="rate-btn">3</button>
       <button @click="rateCourse(2)" class="rate-btn">2</button>
       <button @click="rateCourse(1)" class="rate-btn">1</button>
-    </div>
+    </div> -->
     <button @click="getConfirm">Enroll Now</button>
     <button v-if="!value" style="display: none">Confirm</button>
     <button v-if="value" @click="getEnsure">Confirm</button>
     <p v-if="msgvalue" id="correct">{{ msg }}</p>
     <P v-if="errvalue" id="wrong">Already enrolled</P>
     <hr />
-    <div class="row" id="mid-nav">
+    <!-- <div class="row" id="mid-nav">
       <h6 class="nav">
         <router-link :to="`/course/` + foundCourse._id + `/details`"
           >Syllabus</router-link
@@ -65,7 +65,7 @@
           >Discussion</router-link
         >
       </h6>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -182,6 +182,7 @@ p {
 #maincd {
   margin: 0vw 0vw;
   border: 0vw;
+  width: 100vw;
 }
 #maincdstar {
   margin: 0vw 5vw;

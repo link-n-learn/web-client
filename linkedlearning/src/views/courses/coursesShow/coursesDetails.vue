@@ -4,7 +4,30 @@
       <CourseHead />
     </div>
 
-    <h2 style="text-align: center; margin: 5vh">Syllabus</h2>
+    <div class="row selector-tabs">
+      <span class="col-lg-3">
+        <router-link
+          id="highlighted-tab"
+          :to="`/course/` + foundCourse._id + `/details`"
+          >Syllabus</router-link
+        >
+      </span>
+      <span class="col-lg-3">
+        <router-link
+          class="non-highlighted-tabs"
+          :to="`/course/` + foundCourse._id + `/lecture`"
+          >Lectures</router-link
+        >
+      </span>
+      <span class="col-lg-3">
+        <router-link
+          class="non-highlighted-tabs"
+          :to="`/course/` + foundCourse._id + `/discussion`"
+          >Discussion</router-link
+        >
+      </span>
+      <span class="col-lg-3"></span>
+    </div>
 
     <ul
       v-for="sectionSyllabus in foundCourse.syllabus"
@@ -72,11 +95,40 @@ export default {
 </script>
 <style scoped>
 ul {
-  margin: 1vw 0vw;
+  margin: 5vw 0vw;
 }
 li {
   list-style-type: disc;
   margin: 0vw 3vw;
   font-size: 1.2rem;
+}
+#mid-nav {
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  margin: 0vw 0vw;
+  width: 100vw;
+}
+a {
+  color: black !important;
+}
+
+.selector-tabs {
+  text-align: center;
+  width: 100vw;
+}
+
+#highlighted-tab {
+  padding: 1vh 2vw;
+  background-color: #8000ff;
+  border-radius: 10px;
+  color: white !important;
+}
+
+.non-highlighted-tabs {
+  padding: 1vh 2vw;
+  background-color: #dfbeff;
+  border-radius: 10px;
+  color: black !important;
 }
 </style>

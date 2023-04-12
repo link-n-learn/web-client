@@ -4,6 +4,7 @@
       <router-link class="navbar-brand" href="#" to="/dashboard"
         >Linked learning</router-link
       >
+      <router-link class="nav-item" href="#" to="/dashboard">Home</router-link>
       <button
         class="navbar-toggler"
         type="button"
@@ -34,10 +35,10 @@
         </ul>
         <ul class="navbar-nav ms-auto" v-if="!getisLoggedIn">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Login</a>
+            <router-link to="/login" class="nav-link">Login</router-link>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Signup</a>
+            <router-link to="/signup" class="nav-link">Signup</router-link>
           </li>
         </ul>
       </div>
@@ -45,9 +46,19 @@
     <div style="margin-left: 10vw">
       <div v-show="this.getError.length > 0" class="error-msg">
         {{ this.getError }}
+        <span @click="clearMsg"
+          ><img
+            src="./assets/icons/close.png"
+            style="width: 18px; height: 18px; margin-bottom: 1vh"
+        /></span>
       </div>
       <div v-show="this.getMsg.length > 0" class="success-msg">
         {{ this.getMsg }}
+        <span @click="clearMsg"
+          ><img
+            style="width: 18px; height: 18px; margin-bottom: 1vh"
+            src="./assets/icons/close.png"
+        /></span>
       </div>
       <router-view />
     </div>
@@ -97,6 +108,9 @@ export default {
         this.$store.dispatch("setError", err.response.data.err);
       }
     },
+    clearMsg() {
+      this.$store.dispatch("setMsgandError", "");
+    },
   },
 };
 </script>
@@ -126,6 +140,9 @@ export default {
   border: none;
   border-radius: 10px;
   padding: 2vh 2vw;
+  position: fixed;
+  top: 5;
+  left: 38%;
 }
 .success-msg {
   width: 25%;
@@ -136,6 +153,9 @@ export default {
   border: none;
   border-radius: 10px;
   padding: 2vh 2vw;
+  position: fixed;
+  top: 2vh;
+  left: 38%;
 }
 
 @import "~bootstrap/dist/css/bootstrap.css";

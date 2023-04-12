@@ -9,6 +9,18 @@
     <div id="c" class="col-md-4" @click="contentPage">Content</div>
   </div>
   <div id="cd" class="text-center"><h4>Course Details</h4></div>
+  <div style="margin-left: 2vw">
+    <label for="avatar">Course Image:</label>
+    <input
+      type="file"
+      id="avatar"
+      name="avatar"
+      accept="image/png,image/jpeg"
+      placeholder="Upload Photo"
+      @change="onImageSelected"
+    />
+  </div>
+
   <div class="row" id="second">
     <div class="column" id="inti">
       <input
@@ -20,7 +32,10 @@
       />
     </div>
     <div class="column" id="empty"></div>
-    <div class="column" id="select"><h5>Select Category</h5></div>
+    <div class="column" id="select">
+      <h5>Select Category</h5>
+      <h6>Selected Category : {{ courseCategory.title }}</h6>
+    </div>
   </div>
   <div class="row" id="third">
     <div class="column" id="desc">
@@ -29,8 +44,8 @@
         class="form-control"
         id="description"
         placeholder="Description"
-        rows="5"
-        cols="40"
+        rows="3"
+        cols="20"
         v-model="courseDetails.description"
       ></textarea>
     </div>
@@ -50,17 +65,6 @@
         </div>
       </div>
     </div>
-  </div>
-  <div id="fourth">
-    <label for="avatar">Thumbnail:</label>
-    <input
-      type="file"
-      id="avatar"
-      name="avatar"
-      accept="image/png,image/jpeg"
-      placeholder="Upload Photo"
-      @change="onImageSelected"
-    />
   </div>
 
   <div id="fifth">
@@ -258,7 +262,7 @@ export default {
   border-radius: 0.7rem;
 }
 #description {
-  height: 15vw;
+  height: 10vw;
   width: 40vw;
   border-radius: 0.7rem;
   box-shadow: 4px 6px #80808099;
@@ -289,7 +293,6 @@ label {
 #second {
   width: 80vw;
   margin: 1vw 1vw;
-  margin-top: 2vw;
 }
 #inti {
   border: 0;
@@ -299,6 +302,7 @@ label {
   text-align: none;
   justify-content: none;
   border: 0;
+  margin-top: -12vh;
 }
 #empty {
   text-align: none;
@@ -323,7 +327,7 @@ label {
   height: 15vw;
   overflow: hidden;
   overflow-y: scroll;
-  margin-top: 6px;
+  margin-top: -10vh;
 }
 #scrollp {
   border: 0;
@@ -334,16 +338,11 @@ label {
   border: 0;
 }
 
-#fourth {
-  height: 1vw;
-  /* justify-content: left; */
-  margin: 2vw 1vw;
-  margin-top: -2vh;
-}
 #fifth {
   max-width: 100%;
   justify-content: left;
-  margin: 1vw 1vw;
+  margin: 0 1vw;
+  margin-top: -17vh;
 }
 button {
   margin: 10vh 10vw;

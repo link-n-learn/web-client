@@ -1,7 +1,7 @@
 <template>
-  <div @click="getsearchs(title)" class="row" id="firstdh">
+  <div class="row" id="firstdh">
     <input
-      @click="getcourse"
+      @input="getsearchs(title)"
       v-model="title"
       type="text"
       class="form-control"

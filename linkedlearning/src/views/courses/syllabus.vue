@@ -47,7 +47,7 @@
         v-model="data.subTopics"
       />
     </div>
-    <div class="row" id="fifth">
+    <div class="row" id="fifthk">
       <div id="line"></div>
     </div>
   </div>
@@ -290,10 +290,10 @@ export default {
   border-radius: 0.7rem;
   background-color: #d1cbcb4d;
 }
-#fifth {
+#fifthk {
   width: 100vw;
   justify-content: center;
-  margin: 6vw 12vw;
+  margin: 3vw -8vw;
   margin-bottom: 10rem;
 }
 #line {
@@ -305,7 +305,7 @@ export default {
 #sixth {
   width: 8vw;
   justify-content: center;
-  margin: 2vw 0vw;
+  margin: -8vw 0vw;
 }
 button {
   margin: 0vw 10vw;
