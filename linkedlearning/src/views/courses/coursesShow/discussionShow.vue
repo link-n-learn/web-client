@@ -99,11 +99,15 @@ export default {
 };
 </script>
 <style scoped>
+button {
+  width: 10vw;
+}
 #choose-question {
   cursor: pointer;
 }
 #newquestion {
-  width: 9vw;
+  width: 12vw;
+  margin-top: 5vh;
 }
 #first-ds {
   display: flex;

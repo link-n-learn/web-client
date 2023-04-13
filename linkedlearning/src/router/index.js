@@ -17,8 +17,26 @@ import newQuestion from '../views/courses/discussionCourse/newQuestion.vue';
 import showQuestion from '../views/courses/discussionCourse/showQuestion.vue';
 import videoLecture from '../views/courses/coursesShow/videoLecture.vue';
 import landingPage from "../views/landingPage"
+import TandC from "../views/TandC.vue"
+import PrivacyPolicy from "../views/PrivacyPolicy"
+import ContactUs from "../views/ContactUs"
 
 const routes = [
+  {
+    path : "/terms-conditions",
+    name : "TandC",
+    component : TandC
+  },
+  {
+    path : "/support",
+    name : "support",
+    component : ContactUs
+  },
+  {
+    path : "/privacy-policy",
+    name : "PP",
+    component : PrivacyPolicy
+  },
   {
     path : '/signup',
     name : 'signup',

@@ -5,13 +5,13 @@
         <div class="col-lg-5">
           <img src="../assets/_learn.jpg" alt="Brand Logo" />
         </div>
-        <div class="col-lg-7">
-          <h1>
+        <div class="col-lg-7" style="margin-top: 15vh">
+          <h2>
             Learn for free with well organized
             <span style="margin-left: 5vw"
               >resources from all around the web</span
             >
-          </h1>
+          </h2>
           <router-link to="/signup"><button>Signup Now</button></router-link>
         </div>
       </div>

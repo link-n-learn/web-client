@@ -43,7 +43,20 @@
           />
           <input type="checkbox" name="agree" v-model="signupDetails.agree" />
           <label id="agree_i"
-            >I agree to the Terms and Conditions and Privacy policy</label
+            >I agree to the
+            <router-link
+              style="color: blue !important; text-decoration: underline"
+              to="/terms-conditions"
+            >
+              Terms and Conditions
+            </router-link>
+            and
+            <router-link
+              style="color: blue !important; text-decoration: underline"
+              to="/privacy-policy"
+            >
+              Privacy Policy
+            </router-link></label
           >
         </div>
         <div class="col-6 offset-3 justify-content-center">
@@ -51,7 +64,11 @@
         </div>
         <div class="col-6 offset-3">
           Already have an account
-          <router-link to="/login" style="text-align: left">Login</router-link>
+          <router-link
+            to="/login"
+            style="text-align: left; color: black !important"
+            >Login</router-link
+          >
         </div>
       </div>
     </form>

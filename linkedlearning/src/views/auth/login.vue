@@ -35,7 +35,9 @@
           </div>
           <div class="col-6 offset-3">
             Don't have an account?
-            <router-link to="/signup">Signup</router-link>
+            <router-link to="/signup" style="color: black !important"
+              >Signup</router-link
+            >
           </div>
         </div>
       </form>

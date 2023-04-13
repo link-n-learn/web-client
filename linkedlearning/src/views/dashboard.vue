@@ -1,10 +1,13 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <div>
-    <FindBar :getsearchs="getshowsearch" />
-    <button style="margin: 0; margin-left: 40vw" @click="getsearchcourse">
-      Search
-    </button>
+    <div class="row">
+      <div class="col-lg-8"><FindBar :getsearchs="getshowsearch" /></div>
+      <div class="col-lg-4">
+        <button style="margin: 4vh 0" @click="getsearchcourse">Search</button>
+      </div>
+    </div>
+
     <AdvertismentBar />
     <div>
       <h2 class="cur">Search by catergories</h2>
@@ -31,7 +34,6 @@
       <div id="viewdiv">
         <div id="viewall" @click="viewallpage"><b>View all</b></div>
       </div>
-      <AdvertBar />
       <h2 class="cur">Recommended Courses</h2>
       <div class="row" id="cards">
         <CourseCard
@@ -59,7 +61,7 @@
 <script>
 import FindBar from "../components/FindBar.vue";
 import AdvertismentBar from "../components/AdvertismentBar.vue";
-import AdvertBar from "../components/AdvertBar.vue";
+// import AdvertBar from "../components/AdvertBar.vue";
 import CourseCard from "../components/CourseCard.vue";
 import axios from "axios";
 import router from "../router/index";
@@ -160,7 +162,7 @@ export default {
   components: {
     FindBar,
     AdvertismentBar,
-    AdvertBar,
+    // AdvertBar,
     CourseCard,
   },
 };

@@ -21,9 +21,7 @@
         <p>{{ userdata.email }}</p>
       </div>
     </div>
-    <div id="adps">
-      <AdvertBar />
-    </div>
+    <div id="adps"></div>
     <div @click="getusercourses" id="centerps">
       <div
         class="row"
@@ -95,7 +93,7 @@
 <script>
 import axios from "axios";
 import CourseCard from "../components/CourseCard.vue";
-import AdvertBar from "../components/AdvertBar.vue";
+// import AdvertBar from "../components/AdvertBar.vue";
 import router from "../router/index";
 
 export default {
@@ -161,7 +159,7 @@ export default {
   },
   components: {
     CourseCard,
-    AdvertBar,
+    // AdvertBar,
   },
 };
 </script>

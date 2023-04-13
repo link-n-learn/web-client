@@ -139,6 +139,9 @@ export default {
 </script>
 
 <style scoped>
+button {
+  width: 10vw;
+}
 h5 {
   margin-top: 4vh;
   margin-left: 1vw;
