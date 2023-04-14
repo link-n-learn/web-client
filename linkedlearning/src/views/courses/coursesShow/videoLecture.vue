@@ -39,9 +39,11 @@ export default {
         ) {
           this.Course = this.getfoundCourse.content[item].secContent[j];
           this.videoUrl = this.Course.link;
+          this.videoUrl += "&";
           console.log(this.videoUrl);
           const videoId = this.videoUrl.substring(
-            this.videoUrl.indexOf("=") + 1
+            this.videoUrl.indexOf("=") + 1,
+            this.videoUrl.indexOf("&")
           );
           this.embedUrl = `https://www.youtube.com/embed/${videoId}`;
           console.log(this.embedUrl);
