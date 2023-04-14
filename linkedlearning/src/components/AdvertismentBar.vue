@@ -13,7 +13,7 @@
           </div>
           <div>
             <button>
-              <a href="">Donate</a>
+              <router-link to="/donation">Donate</router-link>
             </button>
           </div>
         </h5>

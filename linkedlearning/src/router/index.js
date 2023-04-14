@@ -20,12 +20,18 @@ import landingPage from "../views/landingPage"
 import TandC from "../views/TandC.vue"
 import PrivacyPolicy from "../views/PrivacyPolicy"
 import ContactUs from "../views/ContactUs"
+import Donation from "../views/DonationPage"
 
 const routes = [
   {
     path : "/terms-conditions",
     name : "TandC",
     component : TandC
+  },
+  {
+    path : "/donation",
+    name : "Donation",
+    component : Donation
   },
   {
     path : "/support",

@@ -15,7 +15,7 @@
             <div class="container text-center">Resend OTP: <button class="btn btn-info" @click.prevent="resendOtp" v-bind:disabled="pausedForAMinute">Resend OTP</button></div>
         </div>
     </div> -->
-  <div class="container">
+  <div style="text-align: center">
     <div class="row">
       <div class="col"></div>
       <div class="col">
@@ -24,32 +24,32 @@
       </div>
       <div class="col"></div>
     </div>
-  </div>
-  <div>
-    <form @submit.prevent="verify">
-      <div class="form-floating">
-        <div class="col-6 offset-3">
-          <p class="text-center">Enter OTP</p>
-          <input
-            id="username"
-            class="form-control"
-            placeholder="OTP"
-            v-model="verifyDetails.otp"
-            required
-          />
-          <button
-            @click.prevent="resendOtp"
-            id="resend-btn"
-            v-bind:disabled="pausedForAMinute"
-          >
-            Resend OTP
-          </button>
+    <div>
+      <form @submit.prevent="verify">
+        <div class="form-floating">
+          <div class="col-6 offset-3">
+            <p class="text-center">Enter OTP</p>
+            <input
+              id="username"
+              class="form-control"
+              placeholder="OTP"
+              v-model="verifyDetails.otp"
+              required
+            />
+            <button
+              @click.prevent="resendOtp"
+              id="resend-btn"
+              v-bind:disabled="pausedForAMinute"
+            >
+              Resend OTP
+            </button>
+          </div>
+          <div class="col-6 offset-3 justify-content-center">
+            <button id="button"><h6>Submit</h6></button>
+          </div>
         </div>
-        <div class="col-6 offset-3 justify-content-center">
-          <button id="button"><h6>Submit</h6></button>
-        </div>
-      </div>
-    </form>
+      </form>
+    </div>
   </div>
 </template>
 
@@ -125,6 +125,7 @@ export default {
 #resend-btn {
   background-color: white;
   color: #127ebd;
+  margin: 0;
   border: none;
   padding: 2vh 0;
 }

@@ -41,9 +41,9 @@
     <div id="product-intro">
       <h3>We've got you covered. Watch how Linked Learning can help you</h3>
       <iframe
-        width="800"
+        width="1000"
         height="550"
-        src="https://www.youtube.com/embed/Rzz5eL05gSc"
+        src="https://www.youtube.com/embed/yKwNLAa2VtM"
         title="YouTube video player"
         frameborder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

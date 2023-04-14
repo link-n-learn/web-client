@@ -59,7 +59,18 @@
               class="icon"
             />
           </div>
-          <div class="column" id="space-2c">
+          <div
+            @click="
+              updateLectureInit(
+                section._id,
+                lecture._id,
+                lecture.title,
+                lecture.link
+              )
+            "
+            class="column"
+            id="space-2c"
+          >
             <h5>{{ lecture.title }}</h5>
           </div>
           <div
@@ -77,14 +88,15 @@
             class="buttonc"
             id="b1"
           >
-            <b>+ as Video</b>
+            <b>+ Video</b>
           </button>
           <button
             @click="addLecture('article', section._id)"
             class="buttonc"
             id="b2"
+            style="width: 10vw"
           >
-            <b>+ as Article</b>
+            <b>+ Article</b>
           </button>
         </div>
       </div>
@@ -126,7 +138,9 @@
           <button
             class="buttonc"
             id="b2"
-            @click="addLectureInCourse()"
+            @click="
+              addContent.updateAction ? updateLecture() : addLectureInCourse()
+            "
             style="color: white; background-color: green"
           >
             <b>Save</b>
@@ -151,10 +165,12 @@ export default {
     return {
       addContent: {
         modalShow: false,
-        link: "some link",
+        link: "",
         linkType: "",
         sectionId: "",
         title: "",
+        lectureId: "",
+        updateAction: false,
       },
       courseContent: [
         {
@@ -179,6 +195,29 @@ export default {
     };
   },
   methods: {
+    updateLecture() {
+      this.courseContent.forEach((section) => {
+        if (section._id == this.addContent.sectionId) {
+          section.secContent.forEach((lecture) => {
+            if (lecture._id == this.addContent.lectureId) {
+              lecture.title = this.addContent.title;
+              lecture.link = this.addContent.link;
+            }
+          });
+        }
+      });
+      console.log(this.courseContent);
+      this.addContent.modalShow = false;
+      this.addContent.updateAction = false;
+    },
+    updateLectureInit(section_id, lecture_id, title, link) {
+      this.addContent.sectionId = section_id;
+      this.addContent.lectureId = lecture_id;
+      this.addContent.title = title;
+      this.addContent.link = link;
+      this.addContent.modalShow = true;
+      this.addContent.updateAction = true;
+    },
     addSection() {
       const newId = ObjectID(Date.now()).toHexString();
       console.log(newId);
@@ -321,6 +360,9 @@ export default {
   border-radius: 1px solid grey;
   border-radius: 0.5rem;
 }
+#b1 {
+  margin-bottom: 0;
+}
 .icon {
   height: 2vw;
   width: 2vw;
@@ -345,13 +387,13 @@ export default {
   margin-left: 1vw;
 }
 .buttonc {
-  margin-left: 2vw;
+  /* margin-left: 2vw; */
   margin-top: 2vh;
+  width: 10vw;
   margin-right: 2vw;
   background-color: #75737356;
   color: black;
   border-radius: 1vw;
-  width: 10vw;
   height: 2vw;
 }
 
@@ -423,5 +465,8 @@ export default {
 
 .modal-content {
   margin: 2vh 3vw;
+}
+h5 {
+  width: 40vw;
 }
 </style>
