@@ -6,15 +6,21 @@
       </div>
       <div class="col-lg-8" style="text-align: center; margin-top: 10vh">
         <h5>
-          It takes a lot of effort and money to keep the platform
+          It takes a lot of effort to keep the platform
           <b>ad-free</b>
           <div style="color: purple; margin-top: 3vh">
             <b>We rely on your support.</b>
           </div>
-          <div>
+          <div style="height: 10vh">
             <button>
               <router-link to="/donation">Donate</router-link>
             </button>
+          </div>
+          <div class="contribute">
+            <h6>Want to find other ways in which you can contibute?</h6>
+            <router-link to="/contribute" id="contribute-link"
+              >Contribute</router-link
+            >
           </div>
         </h5>
       </div>
@@ -31,6 +37,9 @@ export default {
 <style scoped>
 a {
   font-size: 1.2rem;
+}
+#contribute-link {
+  color: rgb(36, 97, 211) !important;
 }
 button {
   margin-top: 3vh;

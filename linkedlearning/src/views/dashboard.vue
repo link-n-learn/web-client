@@ -173,7 +173,7 @@ export default {
   cursor: pointer;
 }
 .select-category {
-  margin: 2vw 2vw;
+  margin: 1vw 1vw;
 }
 .cur {
   margin: 2vw 2vw;

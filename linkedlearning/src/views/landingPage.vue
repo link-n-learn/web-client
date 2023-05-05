@@ -39,7 +39,11 @@
     </div>
     <hr />
     <div id="product-intro">
-      <h3>We've got you covered. Watch how Linked Learning can help you</h3>
+      <h3>We've got you covered</h3>
+      <h4>
+        We have compiled free resources from youtube and around the web into
+        courses for you to learn from.
+      </h4>
       <iframe
         width="1000"
         height="550"

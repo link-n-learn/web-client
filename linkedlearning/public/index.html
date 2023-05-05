@@ -7,6 +7,15 @@
     <link rel="shortcut icon" type="image/png" href="../src/assets/Linkedlearning.jpg"/>
     
     <title>Linked Learning</title>
+    <style>
+      #on-mobile{
+        margin: 5vh;
+        text-align: center;
+      }
+      #on-mobile a{
+        color: blue !important;
+      }
+    </style>
   </head>
   <body>
     <noscript>
@@ -18,8 +27,12 @@
     </noscript>
     <div id="app"></div>
     <div style="display : none" id="on-mobile">
-      mobile not supported
+      <h3>Welcome to Linked learning. Unfortunately, the web application does not support mobile devices</h3>
+      <h4>You can still use linked learning by downloading the android application</h4>
+      <a href="#">Download now</a>
     </div>
+
+   
 
     <script>
       const isMobile = window.innerWidth<1200?true:false
