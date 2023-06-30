@@ -13,6 +13,7 @@
       By accessing this website we assume you accept these terms and conditions.
       Do not continue to use Linked learning if you do not agree to take all of
       the terms and conditions stated on this page.
+      <b>Do not access the website if you are not a present student of New Horizon College of Engineering , Outer Ring Rd, near Marathalli, Kaverappa Layout, Kadubeesanahalli, Kadabeesanahalli, Bengaluru, Karnataka 560103.</b>
     </p>
 
     <p>
@@ -74,19 +75,19 @@
     <p>
       Parts of this website offer an opportunity for users to post and exchange
       opinions and information in certain areas of the website. Linked learning
-      does not filter, edit, publish or review Comments prior to their presence
-      on the website. Comments do not reflect the views and opinions of Linked
-      learning,its agents and/or affiliates. Comments reflect the views and
+      does not filter, edit, publish or review Comments/Content prior to their presence
+      on the website. Comments/Content do not reflect the views and opinions of Linked
+      learning,its agents and/or affiliates. Comments/Content reflect the views and
       opinions of the person who post their views and opinions. To the extent
       permitted by applicable laws, Linked learning shall not be liable for the
-      Comments or for any liability, damages or expenses caused and/or suffered
+      Comments/Content or for any liability, damages or expenses caused and/or suffered
       as a result of any use of and/or posting of and/or appearance of the
-      Comments on this website.
+      Comments/Content on this website.
     </p>
 
     <p>
-      Linked learning reserves the right to monitor all Comments and to remove
-      any Comments which can be considered inappropriate, offensive or causes
+      Linked learning reserves the right to monitor all Comments/Content and to remove
+      any Comments/Content which can be considered inappropriate, offensive or causes
       breach of these Terms and Conditions.
     </p>
 
@@ -98,15 +99,15 @@
         necessary licenses and consents to do so;
       </li>
       <li>
-        The Comments do not invade any intellectual property right, including
+        The Comments/Content do not invade any intellectual property right, including
         without limitation copyright, patent or trademark of any third party;
       </li>
       <li>
-        The Comments do not contain any defamatory, libelous, offensive,
+        The Comments/Content do not contain any defamatory, libelous, offensive,
         indecent or otherwise unlawful material which is an invasion of privacy
       </li>
       <li>
-        The Comments will not be used to solicit or promote business or custom
+        The Comments/Content will not be used to solicit or promote business or custom
         or present commercial activities or unlawful activity.
       </li>
     </ul>
@@ -114,7 +115,7 @@
     <p>
       You hereby grant Linked learning a non-exclusive license to use,
       reproduce, edit and authorize others to use, reproduce and edit any of
-      your Comments in any and all forms, formats or media.
+      your Comments/Content in any and all forms, formats or media.
     </p>
     <h3><strong>Termination of service</strong></h3>
 

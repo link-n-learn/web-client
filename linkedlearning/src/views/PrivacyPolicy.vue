@@ -113,11 +113,14 @@
         </p>
       </li>
     </ul>
-    <h5>
+    <p>
       We do not guarantee compliance to CCPA, GDPR or any other international
       Laws. If you are based outside India and want to use our service, you will
       not be covered by any international law.
-    </h5>
+      <b>This website is intended to be used only by the present students from New Horizon College of Engineering bearing address 
+      New Horzion College of Engineering , Outer Ring Rd, near Marathalli, Kaverappa Layout, Kadubeesanahalli, Kadabeesanahalli, Bengaluru, Karnataka 560103
+      This is only a college project intended to help students. No legal issues related to privacy will be entertained. Do not use the website if you do not agree to this condition</b>
+    </p>
     <h1>Collecting and Using Your Personal Data</h1>
     <h2>Types of Data Collected</h2>
     <h3>Personal Data</h3>
@@ -437,19 +440,12 @@
     </p>
     <h1>Children's Privacy</h1>
     <p>
-      Our Service does not address anyone under the age of 13. We do not
+      Our Service does not address anyone under the age of 18. We do not
       knowingly collect personally identifiable information from anyone under
-      the age of 13. If You are a parent or guardian and You are aware that Your
-      child has provided Us with Personal Data, please contact Us. If We become
-      aware that We have collected Personal Data from anyone under the age of 13
-      without verification of parental consent, We take steps to remove that
-      information from Our servers.
+      the age of 18. If You are a parent or guardian and You are aware that Your
+      child has provided Us with Personal Data, please make sure your child stops using our service.
     </p>
-    <p>
-      If We need to rely on consent as a legal basis for processing Your
-      information and Your country requires consent from a parent, We may
-      require Your parent's consent before We collect and use that information.
-    </p>
+    
     <h1>Links to Other Websites</h1>
     <p>
       Our Service may contain links to other websites that are not operated by
