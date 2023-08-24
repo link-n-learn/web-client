@@ -117,9 +117,7 @@
       We do not guarantee compliance to CCPA, GDPR or any other international
       Laws. If you are based outside India and want to use our service, you will
       not be covered by any international law.
-      <b>This website is intended to be used only by the present students from New Horizon College of Engineering bearing address 
-      New Horzion College of Engineering , Outer Ring Rd, near Marathalli, Kaverappa Layout, Kadubeesanahalli, Kadabeesanahalli, Bengaluru, Karnataka 560103
-      This is only a college project intended to help students. No legal issues related to privacy will be entertained. Do not use the website if you do not agree to this condition</b>
+      This is only a college project intended to help students. No legal issues related to privacy will be entertained. Do not use the website if you do not agree to this condition
     </p>
     <h1>Collecting and Using Your Personal Data</h1>
     <h2>Types of Data Collected</h2>
@@ -163,7 +161,7 @@
     </p>
     <h3>Tracking Technologies and Cookies</h3>
     <p>
-      We use Cookies and similar tracking technologies to track the activity on
+      We might use Cookies and similar tracking technologies to track the activity on
       Our Service and store certain information. Tracking technologies used are
       beacons, tags, and scripts to collect and track information and to improve
       and analyze Our Service. The technologies We use may include:

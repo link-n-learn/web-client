@@ -13,7 +13,6 @@
       By accessing this website we assume you accept these terms and conditions.
       Do not continue to use Linked learning if you do not agree to take all of
       the terms and conditions stated on this page.
-      <b>Do not access the website if you are not a present student of New Horizon College of Engineering , Outer Ring Rd, near Marathalli, Kaverappa Layout, Kadubeesanahalli, Kadabeesanahalli, Bengaluru, Karnataka 560103.</b>
     </p>
 
     <p>
