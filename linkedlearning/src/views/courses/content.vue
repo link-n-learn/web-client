@@ -3,7 +3,7 @@
   <div>
     <div class="heading">
       <div class="coursec"><h3>Create a course</h3></div>
-      <div class="alert alert-warning" role="alert">
+      <div style="margin-top: 10vh;" class="alert alert-warning" role="alert">
         Ensure you click on save before proceeding to the next step
       </div>
       <div class="row" id="first">
@@ -262,19 +262,24 @@ export default {
         }
       }
     },
+
     async SaveButton() {
-      const response = await axios.patch(
-        `/course/${this.getcourseId}/content`,
-        { content: this.courseContent }
-      );
-      if (response.status == 200) {
-        this.$store.dispatch("setMsg", "Content saved");
-      } else {
+      try{
+        const response = await axios.patch(
+          `/course/${this.getcourseId}/content`,
+          { content: this.courseContent }
+        );
+        if (response.status == 200) {
+          this.$store.dispatch("setMsg", "Content saved");
+        }
+      }catch(err){
+        console.log(err)
         this.$store.dispatch(
           "setError",
-          "Something went wrong. If the problem persists, contact us"
+          err.response.data.err
         );
       }
+      
     },
     addLecture(type, sectionId) {
       this.addContent.modalShow = true;

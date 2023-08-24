@@ -46,8 +46,8 @@
     <button @click="getConfirm">Enroll Now</button>
     <button v-if="!value" style="display: none">Confirm</button>
     <button v-if="value" @click="getEnsure">Confirm</button>
-    <p v-if="msgvalue" id="correct">{{ msg }}</p>
-    <P v-if="errvalue" id="wrong">Already enrolled</P>
+    <!-- <p v-if="msgvalue" id="correct">{{ msg }}</p>
+    <P v-if="errvalue" id="wrong">Already enrolled</P> -->
     <hr />
     <!-- <div class="row" id="mid-nav">
       <h6 class="nav">
@@ -115,14 +115,9 @@ export default {
     async getEnsure() {
       try {
         const response = await axios.patch(`/course/${this.course_id}/enroll`);
-        console.log("prev");
-        console.log(response.data);
-        this.msg = response.data.msg;
-        this.msgvalue = true;
+        this.$store.dispatch("setMsg" , response.data.msg)
       } catch (error) {
-        this.errorMsg = "Error retreving data";
-        console.log(error);
-        this.errvalue = true;
+        this.$store.dispatch("setError" , "You are already enrolled");
       }
     },
     async rateCourse(rate) {

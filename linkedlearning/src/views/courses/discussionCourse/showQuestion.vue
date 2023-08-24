@@ -79,7 +79,7 @@ export default {
         console.log(response.data);
         this.question = response.data.question;
       } catch (err) {
-        console.log(err);
+        this.$store.dispatch("setError" , "Something went wrong");
       }
     },
     async updateAnswer() {

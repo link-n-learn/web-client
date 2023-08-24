@@ -23,8 +23,8 @@ const mutations =  {
   }
 const actions = {
     setError : function(context, error){
-      console.log('123asd')
       console.log(error)
+      
       context.commit('setError', error)
     },
     setMsg : function(context, msg){

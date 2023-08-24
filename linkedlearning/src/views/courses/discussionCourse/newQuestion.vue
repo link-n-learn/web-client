@@ -66,12 +66,11 @@ export default {
           `/course/${this.courses_id}/question`,
           newquestionDetails
         );
-        console.log(response);
-        this.msg = response.data.msg;
-        this.msgvalue = true;
-        console.log("hi");
+        // this.msg = response.data.msg;
+        // this.msgvalue = true;
+        this.$store.dispatch("setMsg" , response.data.msg);
       } catch (err) {
-        console.log(err);
+        this.$store.dispatch("setError" , "Something went wrong");
       }
     },
   },
