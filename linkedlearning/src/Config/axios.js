@@ -2,8 +2,8 @@ import axios from "axios";
 import store from "../store/mainIndex";
 import Routes from "../router/index";
 // const baseURL = "https://a996-2405-201-d004-104b-4446-9aec-1503-16bd.in.ngrok.io/"
-//const baseURL = "https://api-linkedlearning.onrender.com/";
-const baseURL = "http://localhost:8000/"
+const baseURL = "https://api-linkedlearning.onrender.com/";
+// const baseURL = "http://localhost:8000/"
 axios.defaults.baseURL = baseURL;
 
 axios.defaults.headers.get["ngrok-skip-browser-warning"] = "*";
